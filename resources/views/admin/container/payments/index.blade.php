@@ -1,20 +1,20 @@
 @extends('layouts.admin')
-
+@section('title', 'Payments')
 @section('admin-content')
-    <div class="w-full flex items-center justify-between gap-5">
-        <div>
-            <div class="text-2xl font-extrabold text-theme-text-main">Payments & Billing</div>
-            <div class="text-[13px] text-theme-text-muted mt-1">Manage invoices, monthly billing cycles, and payment receipts.
-            </div>
+        <div class="w-full flex items-center justify-between gap-5">
+    <div>
+        <div class="text-2xl font-extrabold text-theme-text-main">Payments & Billing</div>
+        <div class="text-[13px] text-theme-text-muted mt-1">Manage invoices, monthly billing cycles, and payment receipts.
         </div>
-        <div class="flex gap-3">
-            <button
-                class="px-5 py-2.5 bg-theme-card border border-[#1a3cdc] text-[#1a3cdc] rounded-[10px] text-[13px] font-bold hover:bg-[#eef2ff] transition-all">Send
-                Invoice</button>
-            <button
-                class="px-5 py-2.5 bg-[#1a3cdc] text-white rounded-[10px] text-[13px] font-bold shadow-md hover:bg-[#1230b0] transition-all">Billing
-                Adjustment</button>
-        </div>
+    </div>
+    <div class="flex gap-3">
+        <button
+            class="px-5 py-2.5 bg-theme-card border border-[#1a3cdc] text-[#1a3cdc] rounded-[10px] text-[13px] font-bold hover:bg-[#eef2ff] transition-all">Send
+            Invoice</button>
+        <button
+            class="px-5 py-2.5 bg-[#1a3cdc] text-white rounded-[10px] text-[13px] font-bold shadow-md hover:bg-[#1230b0] transition-all">Billing
+            Adjustment</button>
+    </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5">
         <div class="bg-theme-card rounded-[14px] p-5 border border-theme-border shadow-sm">
@@ -68,15 +68,23 @@
             <table class="w-full text-left">
                 <thead class="bg-theme-bg border-b border-theme-border">
                     <tr>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Invoice #
+                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">
+                            Invoice #
                         </th>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Client</th>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Service</th>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Period</th>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Amount</th>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Due Date</th>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Status</th>
-                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-right">
+                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Client
+                        </th>
+                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">
+                            Service</th>
+                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Period
+                        </th>
+                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Amount
+                        </th>
+                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Due
+                            Date</th>
+                        <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Status
+                        </th>
+                        <th
+                            class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-right">
                             Actions</th>
                     </tr>
                 </thead>

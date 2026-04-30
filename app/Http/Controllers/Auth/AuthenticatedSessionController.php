@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         if ($user->two_factor_enabled) {
             $code = rand(100000, 999999);
-            
+
             $user->update([
                 'two_factor_code' => Hash::make($code),
                 'two_factor_expires_at' => now()->addMinutes(10),

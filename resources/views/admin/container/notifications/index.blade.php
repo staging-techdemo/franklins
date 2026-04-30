@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Notifications')
 @section('admin-content')
     <div class="w-full flex items-center justify-between gap-5">
         <div>
@@ -25,10 +25,12 @@
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center justify-between mb-1">
-                                <span class="text-[14px] font-bold text-theme-text-main">Critical Alert: Agent Unassigned</span>
+                                <span class="text-[14px] font-bold text-theme-text-main">Critical Alert: Agent
+                                    Unassigned</span>
                                 <span class="text-[11px] text-theme-text-muted">2 mins ago</span>
                             </div>
-                            <p class="text-[13px] text-theme-text-muted leading-relaxed">Arthur Morgan's agent (James Wilson) is
+                            <p class="text-[13px] text-theme-text-muted leading-relaxed">Arthur Morgan's agent (James
+                                Wilson) is
                                 currently offline during a scheduled 24/7 care window.</p>
                             <div class="mt-3 flex gap-2">
                                 <button class="px-3 py-1 bg-[#1a3cdc] text-white rounded-[6px] text-[11px] font-bold">Assign

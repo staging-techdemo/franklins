@@ -14,6 +14,6 @@ class EmployeeMiddleware
             return $next($request);
         }
 
-        abort(403, 'Unauthorized. Employee access required.');
+        return redirect()->route('login')->with('error', 'Unauthorized. Employee access required.');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Complaints')
 @section('admin-content')
     <div class="w-full flex items-center justify-between gap-5">
         <div>
@@ -38,7 +38,8 @@
                     <span class="text-[14px] font-bold text-theme-text-main">Delayed Medication Support</span>
                     <span class="text-[11px] text-theme-text-muted font-bold uppercase tracking-widest">Urgent</span>
                 </div>
-                <p class="text-[13px] text-theme-text-muted mb-3">Client (Arthur Morgan) reported that the agent arrived 15 minutes
+                <p class="text-[13px] text-theme-text-muted mb-3">Client (Arthur Morgan) reported that the agent arrived 15
+                    minutes
                     late for morning medication.</p>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">

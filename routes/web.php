@@ -9,10 +9,11 @@ use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Request\ClientRequestController;
 use App\Http\Controllers\Admin\Dashboard\AdminHomePageController;
 
+// Auth Controllers
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 // Employee Controllers
 use App\Http\Controllers\Employee\Dashboard\EmployeeHomePageController;
-
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // Root route - Login Page
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
@@ -20,7 +21,8 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
 
 Route::post('/', [AuthenticatedSessionController::class, 'store'])
-    ->middleware('guest');
+    ->middleware('guest')
+    ->name('login.store');
 
 // Admin routes (only for authenticated admins)
 Route::middleware(['auth', 'admin'])->group(function () {

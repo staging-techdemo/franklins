@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
                 } elseif ($user->role === 'client' || $user->role === 'user') {
                     return redirect()->route('client.dashboard');
                 } else {
-                    return redirect('/dashboard'); // Fallback to a non-login route to avoid loop
+                    return redirect('/dashboard');
                 }
             }
         }
