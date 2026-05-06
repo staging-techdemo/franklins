@@ -15,14 +15,20 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 // Employee Controllers
 use App\Http\Controllers\Employee\Dashboard\EmployeeHomePageController;
 
+// Frontend Controllers
+use App\Http\Controllers\frontend\HomeController;
+
 // Root route - Login Page
-Route::get('/', [AuthenticatedSessionController::class, 'create'])
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
     ->middleware('guest')
     ->name('login');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')
     ->name('login.store');
+
+// Frontend routes
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Admin routes (only for authenticated admins)
 Route::middleware(['auth', 'admin'])->group(function () {
