@@ -1,10 +1,10 @@
 <div class="w-full relative padding-x padding-y bg-white">
-    <div class="w-full flex items-center gap-16">
+    <div class="w-full flex items-center gap-10">
         <div class="w-2/6 relative">
             <img src="{{ asset('assets/about.jpg') }}" alt="About Us"
-                class="w-full h-full object-cover rounded-3xl rounded-tr-[50%]">
+                class="w-full h-[700px] object-cover rounded-3xl rounded-tr-[50%]">
         </div>
-        <div class="w-2/3 flex flex-col gap-5 relative">
+        <div class="w-2/3 flex flex-col gap-8 relative">
             <div class="w-fit bg-[#F0BB4C] rounded-full px-5 py-2.5">
                 <p class="smallParagraph text-black capitalize font-semibold leading-tight tracking-wide">
                     About Us
@@ -74,15 +74,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="absolute bottom-10 right-20 bg-[#D9ECFF] rounded-3xl p-7 flex flex-col gap-2">
-            <div class="flex items-center justify-between gap-1">
-                <span class="heading text-black dmserif font-semibold leading-none">40+</span>
-                <span class="smallParagraph text-[#666666] font-medium leading-tight my-4 text-center">expert
-                    team<br>member</span>
-            </div>
-            <div class="rounded-xl overflow-hidden h-40">
-                <img src="{{ asset('assets/about2.jpg') }}" alt="Team" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 right-0 bg-[#D9ECFF] rounded-3xl p-7 flex flex-col gap-2">
+                <div class="flex items-center justify-between gap-1">
+                    <span class="heading text-black dmserif font-semibold leading-none">40+</span>
+                    <span class="smallParagraph text-[#666666] font-medium leading-tight my-4 text-center">expert
+                        team<br>member</span>
+                </div>
+                <div class="rounded-xl overflow-hidden h-40">
+                    <img src="{{ asset('assets/about2.jpg') }}" alt="Team" class="w-full h-full object-cover">
+                </div>
             </div>
         </div>
     </div>
