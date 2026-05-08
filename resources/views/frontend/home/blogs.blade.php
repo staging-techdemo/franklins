@@ -55,8 +55,8 @@
       <div class="swiper-wrapper">
          @foreach ($blogs as $blog)
             <div class="swiper-slide h-auto">
-               <div class="bg-[#FAFAFA] rounded-[28px] p-5 h-full flex flex-col">
-                  <div class="overflow-hidden rounded-[24px]">
+               <div class="bg-[#FAFAFA] rounded-md p-5 h-full flex flex-col">
+                  <div class="overflow-hidden rounded-md">
                      <img src="{{ asset('assets/' . $blog['image']) }}" alt="{{ $blog['title'] }}"
                         class="w-full h-[320px] object-cover hover:scale-105 transition duration-500">
                   </div>
@@ -94,28 +94,30 @@
 </section>
 
 <script>
-   const blogSwiper = new Swiper(".blogSwiper", {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
+   document.addEventListener('DOMContentLoaded', function () {
+      new Swiper(".blogSwiper", {
+         slidesPerView: 1,
+         spaceBetween: 30,
+         loop: true,
 
-      pagination: {
-         el: ".blogSwiper .swiper-pagination",
-         clickable: true,
-      },
-
-      breakpoints: {
-         640: {
-            slidesPerView: 1,
+         pagination: {
+            el: ".blogSwiper .swiper-pagination",
+            clickable: true,
          },
 
-         768: {
-            slidesPerView: 2,
-         },
+         breakpoints: {
+            640: {
+               slidesPerView: 1,
+            },
 
-         1024: {
-            slidesPerView: 3,
+            768: {
+               slidesPerView: 2,
+            },
+
+            1024: {
+               slidesPerView: 3,
+            },
          },
-      },
+      });
    });
 </script>

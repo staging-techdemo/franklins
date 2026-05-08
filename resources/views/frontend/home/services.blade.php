@@ -1,239 +1,114 @@
-@php
-   $services = [
-      [
-         'icon' => 'service-icon1.png',
-         'category' => 'Family & Couples',
-         'title' => 'Relationship Counseling',
-         'desc' => 'Guidance and support to strengthen relationships and improve communication.'
-      ],
-      [
-         'icon' => 'service-icon2.png',
-         'category' => 'Mood Disorders',
-         'title' => 'Depression Treatment',
-         'desc' => 'Compassionate care and evidence-based strategies to overcome depression.'
-      ],
-      [
-         'icon' => 'service-icon3.png',
-         'category' => 'Mental Health',
-         'title' => 'Anxiety Counseling',
-         'desc' => 'Professional guidance to reduce anxiety and improve emotional well-being.'
-      ],
-      [
-         'icon' => 'service-icon4.png',
-         'category' => 'Therapy',
-         'title' => 'Personal Growth Therapy',
-         'desc' => 'Helping individuals discover their strengths and achieve emotional balance.'
-      ],
-   ];
-@endphp
-
-<section class="bg-[#f7f7f7] py-20 overflow-hidden">
-   <div class="max-w-7xl mx-auto px-4">
-
-      <!-- Swiper -->
-      <div class="swiper therapySwiper">
-
-         <div class="swiper-wrapper">
-
-            <!-- Card -->
-            <div class="swiper-slide">
-               <div class="bg-white rounded-[28px] p-5 relative h-full">
-
-                  <!-- Image -->
-                  <div class="relative overflow-hidden rounded-[24px]">
-                     <img src="{{ asset('assets/work1.png') }}" alt="" class="w-full h-[400px] object-cover">
-
-                     <!-- Floating Icon -->
-                     <div
-                        class="absolute bottom-[-18px] right-8 w-16 h-16 rounded-2xl bg-[#C98312] shadow-xl flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
-                           viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                              d="M17 20h5V4H2v16h5m10 0v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4m10 0H7" />
-                        </svg>
-                     </div>
-                  </div>
-
-                  <!-- Content -->
-                  <div class="pt-12">
-
-                     <span
-                        class="inline-block px-4 py-2 rounded-full bg-[#F2F4F7] text-xs font-medium uppercase text-gray-700">
-                        Family & Couples
-                     </span>
-
-                     <h3 class="text-4xl font-semibold text-[#0B1B2B] mt-5 mb-4">
-                        Relationship Counseling
-                     </h3>
-
-                     <p class="text-gray-600 text-lg leading-relaxed">
-                        Guidance and support to strengthen relationships and improve communication.
-                     </p>
-
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Card -->
-            <div class="swiper-slide">
-               <div class="bg-white rounded-[28px] p-5 relative h-full">
-
-                  <div class="relative overflow-hidden rounded-[24px]">
-                     <img src="{{ asset('assets/service2.jpg') }}" alt="" class="w-full h-[400px] object-cover">
-
-                     <div
-                        class="absolute bottom-[-18px] right-8 w-16 h-16 rounded-2xl bg-[#C98312] shadow-xl flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
-                           viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                              d="M9 12h6m-3-3v6m8-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                     </div>
-                  </div>
-
-                  <div class="pt-12">
-
-                     <span
-                        class="inline-block px-4 py-2 rounded-full bg-[#F2F4F7] text-xs font-medium uppercase text-gray-700">
-                        Mood Disorders
-                     </span>
-
-                     <h3 class="text-4xl font-semibold text-[#0B1B2B] mt-5 mb-4">
-                        Depression Treatment
-                     </h3>
-
-                     <p class="text-gray-600 text-lg leading-relaxed">
-                        Compassionate care and evidence-based strategies to overcome depression.
-                     </p>
-
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Card -->
-            <div class="swiper-slide">
-               <div class="bg-white rounded-[28px] p-5 relative h-full">
-
-                  <div class="relative overflow-hidden rounded-[24px]">
-                     <img src="{{ asset('assets/service3.jpg') }}" alt="" class="w-full h-[400px] object-cover">
-
-                     <div
-                        class="absolute bottom-[-18px] right-8 w-16 h-16 rounded-2xl bg-[#C98312] shadow-xl flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
-                           viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                     </div>
-                  </div>
-
-                  <div class="pt-12">
-
-                     <span
-                        class="inline-block px-4 py-2 rounded-full bg-[#F2F4F7] text-xs font-medium uppercase text-gray-700">
-                        Mental Health
-                     </span>
-
-                     <h3 class="text-4xl font-semibold text-[#0B1B2B] mt-5 mb-4">
-                        Anxiety Counseling
-                     </h3>
-
-                     <p class="text-gray-600 text-lg leading-relaxed">
-                        Professional guidance to reduce anxiety and improve emotional well-being.
-                     </p>
-
-                  </div>
-
-               </div>
-            </div>
-
-            <!-- Card -->
-            <div class="swiper-slide">
-               <div class="bg-white rounded-[28px] p-5 relative h-full">
-
-                  <div class="relative overflow-hidden rounded-[24px]">
-                     <img src="{{ asset('assets/service4.jpg') }}" alt="" class="w-full h-[400px] object-cover">
-
-                     <div
-                        class="absolute bottom-[-18px] right-8 w-16 h-16 rounded-2xl bg-[#C98312] shadow-xl flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none"
-                           viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                              d="M8 10h8m-8 4h5m-9 7h14a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                        </svg>
-                     </div>
-                  </div>
-
-                  <div class="pt-12">
-
-                     <span
-                        class="inline-block px-4 py-2 rounded-full bg-[#F2F4F7] text-xs font-medium uppercase text-gray-700">
-                        Therapy
-                     </span>
-
-                     <h3 class="text-4xl font-semibold text-[#0B1B2B] mt-5 mb-4">
-                        Personal Growth Therapy
-                     </h3>
-
-                     <p class="text-gray-600 text-lg leading-relaxed">
-                        Helping individuals discover their strengths and achieve emotional balance.
-                     </p>
-
-                  </div>
-
-               </div>
-            </div>
-
+<section class="relative overflow-hidden bg-white padding-x padding-y">
+   <div class="absolute inset-0 z-0">
+      <img src="{{ asset('assets/services-bg.png') }}" alt="Services Background" class="w-full h-full object-cover">
+   </div>
+   <div class="w-full relative flex flex-col gap-10 z-10">
+      <div class="w-full flex flex-col items-center justify-center gap-3">
+         <div class="w-fit bg-[#F0BB4C] rounded-full px-5 py-2.5">
+            <p class="smallParagraph text-black capitalize font-semibold leading-tight tracking-wide">
+               Our Services
+            </p>
          </div>
+         <div>
+            <h2 class="heading font-semibold leading-tight text-black dmserif text-center">
+               Dedicated To Quality Elderly Care <br> With
+               Compassion And
+               <span class="relative inline-block">
+                  Respect
+                  <svg class="absolute -bottom-3 left-0 w-full" viewBox="0 0 120 20" fill="none">
 
-         <!-- Pagination -->
-         <div class="swiper-pagination mt-14 !relative"></div>
+                     <path d="M5 15C30 5 90 5 115 15" stroke="#E7B36A" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+               </span>
+               Always
+            </h2>
+         </div>
+      </div>
+      <div class="grid grid-cols-3 gap-20 items-center justify-center">
+         <div class="space-y-6">
+            <div
+               class="relative bg-white rounded-md px-6 py-7 flex items-center gap-5 overflow-hidden hover:bg-[#7E80B0] transition-colors ease-linear duration-300 cursor-pointer">
+               <div class="relative z-10 w-20 h-20 rounded-full bg-[#F0BB4C] flex items-center justify-center shrink-0">
+                  <img src="{{ asset('assets/service1.png') }}" alt="" class="w-10 h-10 object-contain">
+               </div>
+               <h3 class="text-3xl font-semibold text-black dmserif">
+                  Rehabilitation Services
+               </h3>
+            </div>
+            <div
+               class="relative bg-white rounded-md px-6 py-7 flex items-center gap-5 overflow-hidden hover:bg-[#7E80B0] transition-colors ease-linear duration-300 cursor-pointer">
+               <div class="relative z-10 w-20 h-20 rounded-full bg-[#F0BB4C] flex items-center justify-center shrink-0">
+                  <img src="{{ asset('assets/service2.png') }}" alt="" class="w-10 h-10 object-contain">
+               </div>
+               <h3 class="text-3xl font-semibold text-black dmserif">
+                  Home Safety Assessments
+               </h3>
+            </div>
+            <div
+               class="relative bg-white rounded-md px-6 py-7 flex items-center gap-5 overflow-hidden hover:bg-[#7E80B0] transition-colors ease-linear duration-300 cursor-pointer">
+               <div class="relative z-10 w-20 h-20 rounded-full bg-[#F0BB4C] flex items-center justify-center shrink-0">
+                  <img src="{{ asset('assets/service3.png') }}" alt="" class="w-10 h-10 object-contain">
+               </div>
+               <h3 class="text-3xl font-semibold text-black dmserif">
+                  Transportation Assistance
+               </h3>
+            </div>
+         </div>
+         <div class="flex justify-center">
+            <div class="overflow-hidden rounded-[40px]">
+               <img src="{{ asset('assets/service-img.jpg') }}" alt=""
+                  class="w-full h-full object-cover rounded-3xl rounded-bl-[50%] min-h-[600px]">
+            </div>
+         </div>
+         <div class="flex flex-col gap-5">
+            <h3 class="text-4xl font-semibold leading-snug text-black dmserif">
+               Our Personalized Approach Ensures
+               That Seniors Receive The Care
+            </h3>
+            <p class="text-[#666666] leading-relaxed paragraph">
+               These facilities are designed to support the social
+               well-being of older adults through personalized care
+               plans, professional medical support engaging
+            </p>
+            <div class="space-y-5">
+               <div class="flex items-center gap-4">
+                  <div class="w-7 h-7 rounded-full bg-[#F0BB4C] flex items-center justify-center shrink-0">
+                     ✓
+                  </div>
+                  <p class="text-xl text-black">
+                     Nutritious meal planning
+                  </p>
 
+               </div>
+               <div class="flex items-center gap-4">
+                  <div class="w-7 h-7 rounded-full bg-[#F0BB4C] flex items-center justify-center shrink-0">
+                     ✓
+                  </div>
+                  <p class="text-xl text-black">
+                     Companionship and social activities
+                  </p>
+               </div>
+               <div class="flex items-center gap-4">
+                  <div class="w-7 h-7 rounded-full bg-[#F0BB4C] flex items-center justify-center shrink-0">
+                     ✓
+                  </div>
+                  <p class="text-xl text-black">
+                     Transportation assistance
+                  </p>
+               </div>
+            </div>
+            <button
+               class="w-fit bg-[#F0BB4C] text-black subparagraph flex items-center gap-2 font-medium px-5 py-4 rounded-md hover:bg-[#7E80B0] hover:text-white transition-all duration-300">
+               Learn More
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M17 7l-10 10" />
+                  <path d="M8 7l9 0l0 9" />
+               </svg>
+            </button>
+         </div>
       </div>
    </div>
 </section>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script>
-   const swiper = new Swiper(".therapySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-
-      pagination: {
-         el: ".swiper-pagination",
-         clickable: true,
-      },
-
-      breakpoints: {
-         640: {
-            slidesPerView: 1,
-         },
-         768: {
-            slidesPerView: 2,
-         },
-         1024: {
-            slidesPerView: 3,
-         },
-      },
-   });
-</script>
-
-<style>
-   .swiper-pagination-bullet {
-      width: 10px;
-      height: 10px;
-      background: #d1d5db;
-      opacity: 1;
-   }
-
-   .swiper-pagination-bullet-active {
-      width: 30px;
-      border-radius: 999px;
-      background: #C98312;
-   }
-</style>

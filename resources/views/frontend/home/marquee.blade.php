@@ -1,4 +1,4 @@
-<div class="w-full overflow-hidden py-4 marquee-wrapper">
+<div class="w-full overflow-hidden pb-20 marquee-wrapper">
    <div class="marquee-track">
       @php
          $items = [
