@@ -1,4 +1,4 @@
-<div class="w-full bg-white padding-x py-3">
+<div class="w-full bg-[#EBF0DF] padding-x py-3">
    <div class="w-full flex items-center justify-between gap-10">
       <div class="flex items-center gap-5">
          <div class="flex items-center gap-2">

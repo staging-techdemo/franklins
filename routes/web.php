@@ -17,6 +17,10 @@ use App\Http\Controllers\Employee\Dashboard\EmployeeHomePageController;
 
 // Frontend Controllers
 use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\AboutController;
+use App\Http\Controllers\frontend\BlogsController;
+use App\Http\Controllers\frontend\ContactController;
+use App\Http\Controllers\frontend\ServicesController;
 
 // Root route - Login Page
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
@@ -29,6 +33,10 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])
 
 // Frontend routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs');
+Route::get('/services', [ServicesController::class, 'index'])->name('services');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // Admin routes (only for authenticated admins)
 Route::middleware(['auth', 'admin'])->group(function () {

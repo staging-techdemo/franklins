@@ -1,21 +1,21 @@
 <div id="navbar" class="w-full padding-x py-3 transition-all duration-300 border-b border-black/5">
    <div class="w-full flex items-center justify-between">
       <a href="#" class="block">
-         <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="w-36 object-cover">
+         <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="w-28 object-cover">
       </a>
       <nav class="flex items-center gap-8 lg:gap-10 uppercase">
-         <a href="#"
+         <a href="/"
             class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Home</a>
-         <a href="#"
+         <a href="/about"
             class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">About
             Us</a>
-         <a href="#"
+         <a href="/services"
             class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Services</a>
-         <a href="#"
+         <a href="/blogs"
             class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Blog</a>
-         <a href="#"
+         <a href="/contact"
             class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Contact
-            us</a>
+            Us</a>
       </nav>
       <div>
          <button

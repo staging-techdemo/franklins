@@ -17,7 +17,10 @@
     <main>
         <div class="absolute top-0 left-0 w-full z-50">
             @include('frontend.components.header')
-            @include('frontend.components.navbar')
+
+            <div class="{{ request()->is('/') ? '' : 'bg-white' }}">
+                @include('frontend.components.navbar')
+            </div>
         </div>
         @yield('content')
         @include('frontend.components.footer')
