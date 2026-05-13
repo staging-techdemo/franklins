@@ -5,7 +5,7 @@
          <img class="w-80 h-auto object-cover" src="{{ asset('assets/logo.png') }}" alt="Logo">
       </div>
    </div>
-   <div class="flex-1 overflow-y-auto px-4 py-6 custom-scrollbar">
+   <div id="sidebar-scroll" class="flex-1 overflow-y-scroll px-4 py-6 custom-scrollbar scrollbar-visible">
       @if(Auth::user()->role === 'admin')
          <div class="mb-8">
             <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Main</div>
@@ -87,6 +87,40 @@
                         <polyline points="12 6 12 12 16 14" />
                      </svg>
                      <span class="text-[13.5px] font-bold">Outdoor Activities</span>
+                  </div>
+               </a>
+            </div>
+         </div>
+         <div class="mb-8">
+            <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Content Management</div>
+            <div class="space-y-1">
+               <a href="{{ route('admin.services.index') }}"
+                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.services.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                  <div class="flex items-center gap-3">
+                     <svg class="w-[18px] h-[18px] {{ Request::routeIs('admin.services.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z" />
+                        <path d="M7 21h10" /><path d="M9 16v5" /><path d="M15 16v5" />
+                     </svg>
+                     <span class="text-[13.5px] font-bold">Services</span>
+                  </div>
+               </a>
+               <a href="{{ route('admin.blogs.index') }}"
+                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.blogs.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                  <div class="flex items-center gap-3">
+                     <svg class="w-[18px] h-[18px] {{ Request::routeIs('admin.blogs.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <path d="M2 10h20" />
+                     </svg>
+                     <span class="text-[13.5px] font-bold">Blogs</span>
+                  </div>
+               </a>
+               <a href="{{ route('admin.categories.index') }}"
+                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.categories.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                  <div class="flex items-center gap-3">
+                     <svg class="w-[18px] h-[18px] {{ Request::routeIs('admin.categories.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                     </svg>
+                     <span class="text-[13.5px] font-bold">Categories</span>
                   </div>
                </a>
             </div>
@@ -367,3 +401,14 @@
       </form>
    </div>
 </aside>
+
+<script>
+    // Fix: sidebar scroll works with mouse wheel without needing to click first
+    const sidebarScroll = document.getElementById('sidebar-scroll');
+    if (sidebarScroll) {
+        sidebarScroll.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            sidebarScroll.scrollTop += e.deltaY;
+        }, { passive: false });
+    }
+</script>

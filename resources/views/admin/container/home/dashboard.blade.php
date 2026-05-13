@@ -17,7 +17,7 @@
                 New Client</a>
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5">
+    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-4 gap-5 my-5">
         <a href="{{ route('admin.clients.index') }}"
             class="bg-theme-card rounded-[14px] p-5 border border-theme-border shadow-sm hover:shadow-md transition-shadow group">
             <div
@@ -82,8 +82,8 @@
             </div>
         </a>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <div class="lg:col-span-2">
+    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-3 gap-5">
+        <div class="col-span-2">
             <div class="bg-theme-card rounded-[14px] border border-theme-border shadow-sm mb-5">
                 <div class="px-6 py-5 border-b border-theme-border flex items-center justify-between">
                     <h3 class="text-[15px] font-extrabold text-theme-text-main">Recent Client Activities</h3>

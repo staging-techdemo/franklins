@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Request\ClientRequestController;
 use App\Http\Controllers\Admin\Dashboard\AdminHomePageController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 
 // Auth Controllers
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -21,6 +25,8 @@ use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\BlogsController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\ServicesController;
+use App\Http\Controllers\frontend\BlogDetailController;
+use App\Http\Controllers\frontend\ServiceDetailController;
 
 // Root route - Login Page
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
@@ -35,8 +41,10 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs');
-Route::get('/services', [ServicesController::class, 'index'])->name('services');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/services', [ServicesController::class, 'index'])->name('services');
+Route::get('/blog/{slug}', [BlogDetailController::class, 'index'])->name('blog-detail');
+Route::get('/service/{slug}', [ServiceDetailController::class, 'index'])->name('service-detail');
 
 // Admin routes (only for authenticated admins)
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -54,6 +62,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard/complaints', [AdminHomePageController::class, 'complaints'])->name('admin.complaints');
     Route::get('/dashboard/notifications', [AdminHomePageController::class, 'notifications'])->name('admin.notifications');
     Route::get('/dashboard/reports', [AdminHomePageController::class, 'reports'])->name('admin.reports');
+
+    // Dynamic Content Routes
+    Route::resource('/dashboard/services', ServiceController::class)->names('admin.services');
+    Route::resource('/dashboard/blogs', BlogController::class)->names('admin.blogs');
+    Route::resource('/dashboard/categories', CategoryController::class)->names('admin.categories');
+
+    // Tag API routes (used for inline tag creation on blog forms)
+    Route::post('/dashboard/tags', [TagController::class, 'store'])->name('admin.tags.store');
+    Route::delete('/dashboard/tags/{tag}', [TagController::class, 'destroy'])->name('admin.tags.destroy');
 
     // Setting routes
     Route::get('/dashboard/setting', [SettingController::class, 'index'])->name('admin.container.setting.index');

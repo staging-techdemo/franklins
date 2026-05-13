@@ -3,18 +3,18 @@
       <a href="#" class="block">
          <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="w-28 object-cover">
       </a>
-      <nav class="flex items-center gap-8 lg:gap-10 uppercase">
+      <nav class="flex items-center gap-7">
          <a href="{{ route('home') }}"
-            class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Home</a>
+            class="paragraph text-black font-medium leading-tight transition-colors capitalize duration-300 hover:text-[#C67C48]">Home</a>
          <a href="{{ route('about') }}"
-            class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">About
+            class="paragraph text-black font-medium leading-tight transition-colors capitalize duration-300 hover:text-[#C67C48]">About
             Us</a>
          <a href="{{ route('services') }}"
-            class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Services</a>
+            class="paragraph text-black font-medium leading-tight transition-colors capitalize duration-300 hover:text-[#C67C48]">Services</a>
          <a href="{{ route('blogs') }}"
-            class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Blog</a>
+            class="paragraph text-black font-medium leading-tight transition-colors capitalize duration-300 hover:text-[#C67C48]">Blog</a>
          <a href="{{ route('contact') }}"
-            class="smallParagraph text-black font-medium leading-tight transition-colors duration-300 hover:text-[#C67C48]">Contact
+            class="paragraph text-black font-medium leading-tight transition-colors capitalize duration-300 hover:text-[#C67C48]">Contact
             Us</a>
       </nav>
       <div>

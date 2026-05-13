@@ -19,7 +19,7 @@
 </head>
 
 <body class="bg-theme-bg text-theme-text-main transition-colors duration-300">
-    <div class="flex min-h-screen overflow-y-auto">
+    <div class="flex min-h-screen">
         <x-sidebar />
         <div :class="sidebarOpen ? 'ml-64' : 'ml-0'"
             class="flex flex-col flex-1 overflow-hidden transition-all duration-300">

@@ -21,7 +21,7 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
+    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-4 gap-5 mb-5">
         <div class="bg-theme-card text-theme-text-main rounded-[14px] p-5 border border-theme-border shadow-sm">
             <div class="text-theme-text-muted text-[12px] font-bold uppercase tracking-widest mb-1">Total Clients</div>
             <div class="text-2xl font-extrabold text-theme-text-main">{{ $stats['total'] }}</div>

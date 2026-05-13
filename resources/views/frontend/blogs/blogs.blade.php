@@ -1,123 +1,136 @@
-@php
-   $blogs = [
-      [
-         'image' => 'blog01.jpg',
-         'date' => 'Aug 24, 2025',
-         'comments' => '03 Comment',
-         'title' => 'Choosing The Right Elderly Home: What Families Should Know',
-         'desc' => 'We believe in nurturing a sense of community, encouraging independence, and ensuring that they feel safe and valued.'
-      ],
-      [
-         'image' => 'blog02.jpg',
-         'date' => 'Aug 25, 2025',
-         'comments' => 'No Comment',
-         'title' => 'Understanding Different Levels Of Senior Care: Assisted Living',
-         'desc' => 'Understanding assisted living and choosing the right support for seniors and their families.'
-      ],
-      [
-         'image' => 'blog03.jpg',
-         'date' => 'Aug 26, 2025',
-         'comments' => '01 Comment',
-         'title' => 'Top 5 Health Tips For Seniors Living In Care Homes',
-         'desc' => 'Essential health and wellness tips for seniors to stay healthy and active every day.'
-      ],
-      [
-         'image' => 'blog04.jpg',
-         'date' => 'Aug 27, 2025',
-         'comments' => 'No Comment',
-         'title' => 'The Role Of Family In Senior Care: Staying Connected',
-         'desc' => 'How emotional support and family involvement improve senior well-being.'
-      ],
-   ];
-@endphp
-<section class="bg-white padding-x padding-y overflow-hidden">
-   <div class="w-full flex flex-col gap-5 items-center mb-14">
-      <div class="bg-[#F0BB4C] rounded-full px-5 py-2.5">
-         <p class="smallParagraph text-black capitalize font-semibold leading-tight tracking-wide">
-            Latest News
-         </p>
-      </div>
-      <div>
-         <h2 class="heading font-semibold leading-tight text-black dmserif max-w-4xl text-center">
-            Check Out Everything Interesting And Useful
-            From The Latest
-            <span class="relative inline-block">
-               News
-               <svg class="absolute -bottom-3 left-0 w-full" viewBox="0 0 120 20" fill="none">
-
-                  <path d="M5 15C30 5 90 5 115 15" stroke="#E7B36A" stroke-width="2" stroke-linecap="round" />
-               </svg>
-            </span>
-         </h2>
-      </div>
-   </div>
-   <div class="swiper blogSwiper">
-      <div class="swiper-wrapper">
-         @foreach ($blogs as $blog)
-            <div class="swiper-slide h-auto">
-               <div class="bg-[#FAFAFA] rounded-md p-5 h-full flex flex-col">
-                  <div class="overflow-hidden rounded-md">
-                     <img src="{{ asset('assets/' . $blog['image']) }}" alt="{{ $blog['title'] }}"
-                        class="w-full h-[320px] object-cover hover:scale-105 transition duration-500">
-                  </div>
-                  <div class="flex items-center gap-4 text-gray-500 text-sm mt-6">
-                     <div class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                           stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        {{ $blog['date'] }}
+<section class="w-full padding-x padding-y bg-white overflow-hidden">
+   <div class="max-w-7xl mx-auto px-4 sm:px-5 xm:px-4">
+      <div class="grid grid-cols-3 gap-8 lg:gap-6 md:grid-cols-1 sm:grid-cols-1 xm:grid-cols-1">
+         <div class="space-y-6">
+            <div class="bg-white rounded-[18px] p-6 sm:p-5 xm:p-4">
+               <h3 class="text-[22px] sm:text-[20px] xm:text-[18px] font-semibold mb-5">
+                  Search Here
+               </h3>
+               <form action="{{ route('blogs') }}" method="GET" class="relative">
+                  <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search..."
+                     class="w-full h-[54px] bg-[#f5f5f5] rounded-lg border border-transparent px-5 pr-14 outline-none focus:border-[#F0BB4C] text-sm">
+                  <button type="submit"
+                     class="absolute top-1/2 right-2 -translate-y-1/2 w-10 h-10 rounded-md bg-[#F0BB4C] text-white flex items-center justify-center">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                        <path d="M21 21l-6 -6" />
+                     </svg>
+                  </button>
+               </form>
+            </div>
+            <div class="bg-white rounded-md p-6 sm:p-5 xm:p-4">
+               <h3 class="text-[22px] sm:text-[20px] xm:text-[18px] font-semibold mb-6">
+                  Popular Post
+               </h3>
+               <div class="space-y-5">
+                  @foreach ($popularPosts as $post)
+                     <div class="flex gap-4">
+                        <img src="{{ $post->image ? asset($post->image) : asset('assets/blog01.jpg') }}" alt=""
+                           class="w-[85px] h-[85px] rounded-xl object-cover flex-shrink-0">
+                        <div>
+                           <span class="text-xs text-gray-400">
+                              {{ $post->published_at ? $post->published_at->format('d M Y') : $post->created_at->format('d M Y') }}
+                           </span>
+                           <h4 class="text-[15px] leading-6 font-medium mt-1 hover:text-[#F0BB4C] transition">
+                              <a href="{{ route('blog-detail', $post->slug) }}">
+                                 {{ $post->title }}
+                              </a>
+                           </h4>
+                        </div>
                      </div>
-                     <span>/</span>
-                     <div class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                           stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4-.8L3 20l1.2-3.2A7.963 7.963 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                        </svg>
-                        {{ $blog['comments'] }}
-                     </div>
-                  </div>
-                  <h3 class="text-3xl font-semibold leading-snug mt-5 mb-4 text-black">
-                     {{ $blog['title'] }}
-                  </h3>
-                  <p class="text-gray-600 leading-relaxed text-lg">
-                     {{ $blog['desc'] }}
-                  </p>
+                  @endforeach
                </div>
             </div>
-         @endforeach
+            <div class="bg-white rounded-[18px] p-6 sm:p-5 xm:p-4">
+               <h3 class="text-[22px] sm:text-[20px] xm:text-[18px] font-semibold mb-6">
+                  Blogs Category
+               </h3>
+               <div class="space-y-3">
+                  @foreach ($categories as $category)
+                     <a href="{{ route('blogs', ['category' => $category->id]) }}"
+                        class="w-full h-[52px] rounded-lg px-4 flex items-center justify-between text-sm transition duration-300 {{ request('category') == $category->id ? 'bg-[#F0BB4C]' : 'bg-[#f5f5f5] hover:bg-[#F0BB4C] text-black' }}">
+                        <span>{{ $category->name }}</span>
+                        <span>({{ $category->blogs_count }})</span>
+                     </a>
+                  @endforeach
+               </div>
+            </div>
+            <div class="bg-white rounded-[18px] p-6 sm:p-5 xm:p-4">
+               <h3 class="text-[22px] sm:text-[20px] xm:text-[18px] font-semibold mb-6">
+                  Popular Tags
+               </h3>
+               <div class="flex flex-wrap gap-3">
+                  @foreach ($tags as $tag)
+                     <a href="{{ route('blogs', ['tag' => $tag->id]) }}"
+                        class="px-4 py-2 rounded-md text-sm transition duration-300 {{ request('tag') == $tag->id ? 'bg-[#F0BB4C]' : 'bg-[#f5f5f5] hover:bg-[#F0BB4C] text-black' }}">
+                        {{ $tag->name }}
+                     </a>
+                  @endforeach
+               </div>
+            </div>
+         </div>
+         <div class="col-span-2 md:col-span-1 sm:col-span-1 xm:col-span-1">
+            <div class="grid grid-cols-2 gap-8 lg:gap-6 sm:grid-cols-1 xm:grid-cols-1">
+               @forelse ($blogs as $blog)
+                  @php
+                     $date = $blog->published_at ?? $blog->created_at;
+                  @endphp
+                  <div class="group">
+                     <div class="relative overflow-hidden rounded-[18px]">
+                        <img src="{{ $blog->image ? asset($blog->image) : asset('assets/blog01.jpg') }}" alt=""
+                           class="w-full h-[260px] lg:h-[240px] md:h-[250px] sm:h-[240px] xm:h-[220px] object-cover transition duration-700 group-hover:scale-110">
+                        <div
+                           class="absolute bottom-3 right-3 bg-[#F0BB4C] w-[58px] h-[62px] rounded-md flex flex-col items-center justify-center">
+                           <h4 class="text-black text-[20px] font-bold leading-none">
+                              {{ $date->format('d') }}
+                           </h4>
+                           <span class="text-[11px] uppercase mt-1 font-medium leading-none">
+                              {{ $date->format('M') }}
+                           </span>
+                        </div>
+                     </div>
+                     <div class="pt-5">
+                        <div class="flex items-center gap-5 text-gray-400 text-xs mb-3">
+                           <div class="flex items-center gap-1">
+                              <span>By {{ $blog->user->name ?? 'Admin' }}</span>
+                           </div>
+                           <div class="flex items-center gap-1">
+                              <span>{{ $blog->category->name ?? 'News' }}</span>
+                           </div>
+                        </div>
+                        <h2
+                           class="text-[25px] lg:text-[22px] md:text-[24px] sm:text-[20px] xm:text-[18px] leading-[36px] lg:leading-[32px] sm:leading-[30px] xm:leading-[28px] font-semibold text-[#111] mb-4 transition duration-300 hover:text-[#F0BB4C]">
+                           <a href="{{ route('blog-detail', $blog->slug) }}">
+                              {{ $blog->title }}
+                           </a>
+                        </h2>
+                        <p class="text-gray-500 text-[15px] leading-7 mb-5 line-clamp-3">
+                           {{ Str::limit(strip_tags($blog->content), 120) }}
+                        </p>
+                        <a href="{{ route('blog-detail', $blog->slug) }}"
+                           class="inline-flex items-center gap-2 text-sm font-semibold hover:text-[#F0BB4C] transition">
+                           Learn More
+                           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                           </svg>
+                        </a>
+                     </div>
+                  </div>
+               @empty
+                  <div class="col-span-2 text-center py-20 text-gray-400">
+                     No blog posts found matching your criteria.
+                  </div>
+               @endforelse
+            </div>
+            <div class="mt-12">
+               {{ $blogs->appends(request()->query())->links() }}
+            </div>
+         </div>
       </div>
-      <div class="swiper-pagination mt-14 !relative"></div>
    </div>
 </section>
-
-<script>
-   document.addEventListener('DOMContentLoaded', function () {
-      new Swiper(".blogSwiper", {
-         slidesPerView: 1,
-         spaceBetween: 30,
-         loop: true,
-
-         pagination: {
-            el: ".blogSwiper .swiper-pagination",
-            clickable: true,
-         },
-
-         breakpoints: {
-            640: {
-               slidesPerView: 1,
-            },
-
-            768: {
-               slidesPerView: 2,
-            },
-
-            1024: {
-               slidesPerView: 3,
-            },
-         },
-      });
-   });
-</script>

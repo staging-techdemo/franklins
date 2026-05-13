@@ -17,7 +17,7 @@
                 Report</button>
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5">
+    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-4 gap-5 my-5">
         <div class="bg-theme-card rounded-[14px] p-5 border border-theme-border shadow-sm">
             <div class="text-theme-text-muted text-[12px] font-bold uppercase tracking-widest mb-1">Present Today</div>
             <div class="text-2xl font-extrabold text-theme-text-main">28</div>
@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-3 gap-5">
         <div class="lg:col-span-2">
             <div class="bg-theme-card rounded-[14px] border border-theme-border overflow-hidden shadow-sm">
                 <div class="px-6 py-5 border-b border-theme-border flex items-center justify-between">

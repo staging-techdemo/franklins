@@ -7,7 +7,7 @@
             <div class="text-[13px] text-theme-text-muted mt-1">Manage system-wide broadcasts and personalized alerts.</div>
         </div>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 my-5">
+    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-3 gap-5 my-5">
         <div class="lg:col-span-2 space-y-4">
             <div class="bg-theme-card rounded-[14px] border border-theme-border overflow-hidden shadow-sm">
                 <div class="px-6 py-5 border-b border-theme-border flex items-center justify-between">
@@ -25,10 +25,12 @@
                         </div>
                         <div class="flex-1">
                             <div class="flex items-center justify-between mb-1">
-                                <span class="text-[14px] font-bold text-theme-text-main">Critical Alert: Agent Unassigned</span>
+                                <span class="text-[14px] font-bold text-theme-text-main">Critical Alert: Agent
+                                    Unassigned</span>
                                 <span class="text-[11px] text-theme-text-muted">2 mins ago</span>
                             </div>
-                            <p class="text-[13px] text-theme-text-muted leading-relaxed">Arthur Morgan's agent (James Wilson) is
+                            <p class="text-[13px] text-theme-text-muted leading-relaxed">Arthur Morgan's agent (James
+                                Wilson) is
                                 currently offline during a scheduled 24/7 care window.</p>
                             <div class="mt-3 flex gap-2">
                                 <button class="px-3 py-1 bg-[#1a3cdc] text-white rounded-[6px] text-[11px] font-bold">Assign

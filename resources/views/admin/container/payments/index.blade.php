@@ -1,22 +1,23 @@
 @extends('layouts.admin')
 @section('title', 'Payments')
 @section('admin-content')
-        <div class="w-full flex items-center justify-between gap-5">
-    <div>
-        <div class="text-2xl font-extrabold text-theme-text-main">Payments & Billing</div>
-        <div class="text-[13px] text-theme-text-muted mt-1">Manage invoices, monthly billing cycles, and payment receipts.
+    <div class="w-full flex items-center justify-between gap-5">
+        <div>
+            <div class="text-2xl font-extrabold text-theme-text-main">Payments & Billing</div>
+            <div class="text-[13px] text-theme-text-muted mt-1">Manage invoices, monthly billing cycles, and payment
+                receipts.
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <button
+                class="px-5 py-2.5 bg-theme-card border border-[#1a3cdc] text-[#1a3cdc] rounded-[10px] text-[13px] font-bold hover:bg-[#eef2ff] transition-all">Send
+                Invoice</button>
+            <button
+                class="px-5 py-2.5 bg-[#1a3cdc] text-white rounded-[10px] text-[13px] font-bold shadow-md hover:bg-[#1230b0] transition-all">Billing
+                Adjustment</button>
         </div>
     </div>
-    <div class="flex gap-3">
-        <button
-            class="px-5 py-2.5 bg-theme-card border border-[#1a3cdc] text-[#1a3cdc] rounded-[10px] text-[13px] font-bold hover:bg-[#eef2ff] transition-all">Send
-            Invoice</button>
-        <button
-            class="px-5 py-2.5 bg-[#1a3cdc] text-white rounded-[10px] text-[13px] font-bold shadow-md hover:bg-[#1230b0] transition-all">Billing
-            Adjustment</button>
-    </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-5">
+    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-4 gap-5 my-5">
         <div class="bg-theme-card rounded-[14px] p-5 border border-theme-border shadow-sm">
             <div class="text-theme-text-muted text-[12px] font-bold uppercase tracking-widest mb-1">Total Billed (Oct)</div>
             <div class="text-2xl font-extrabold text-theme-text-main">$48,250</div>

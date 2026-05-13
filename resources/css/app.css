@@ -17,6 +17,10 @@
     font-family: "Inter";
 }
 
+body {
+    font-family: "PlusJakartaSans";
+}
+
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -27,7 +31,33 @@
     background: #7e80b0;
 }
 ::-webkit-scrollbar-thumb:hover {
+    background: #6b6da3;
+}
+
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #7e80b0 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
     background: #7e80b0;
+    visibility: hidden;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+}
+
+.scrollbar-visible::-webkit-scrollbar-thumb {
+    visibility: visible !important;
 }
 
 @layer base {
