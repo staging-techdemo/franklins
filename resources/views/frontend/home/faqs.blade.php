@@ -64,7 +64,7 @@
                      </svg>
                   </span>
                </button>
-               <div id="faq-{{ $index }}" class="hidden px-5 pb-5 text-gray-600">
+               <div id="faq-{{ $index }}" class="hidden px-5 pb-5 text-[#666666]">
                   {{ $faq['a'] }}
                </div>
 

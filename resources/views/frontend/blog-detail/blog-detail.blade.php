@@ -1,16 +1,11 @@
 <section class="w-full bg-white padding-x padding-y overflow-hidden">
    <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-3 gap-8 lg:gap-6 md:grid-cols-1 sm:grid-cols-1 xm:grid-cols-1">
-
-         <!-- MAIN CONTENT -->
          <div class="col-span-2 md:col-span-1 sm:col-span-1 xm:col-span-1">
-            <!-- Featured Image -->
             <div class="overflow-hidden rounded-[18px] mb-6">
                <img src="{{ $blog->image ? asset($blog->image) : asset('assets/blog01.jpg') }}" alt="{{ $blog->title }}"
                   class="w-full h-[420px] lg:h-[380px] md:h-[360px] sm:h-[300px] xm:h-[240px] object-cover">
             </div>
-
-            <!-- Meta -->
             <div class="flex items-center gap-5 text-gray-400 text-xs mb-4 flex-wrap">
                <span class="inline-flex items-center gap-1.5">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24"
@@ -48,7 +43,7 @@
             </h1>
 
             <!-- Content from Quill -->
-            <div class="prose prose-lg max-w-none text-gray-600 leading-8 blog-content">
+            <div class="prose prose-lg max-w-none text-[#666666] leading-8 blog-content">
                {!! $blog->content !!}
             </div>
          </div>

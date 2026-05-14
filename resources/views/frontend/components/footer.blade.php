@@ -31,7 +31,8 @@
                <label class="flex items-start gap-2 cursor-pointer mt-2">
                   <input type="checkbox"
                      class="mt-1 w-4 h-4 rounded border-gray-500 text-[#7E80B0] focus:ring-[#7E80B0] bg-transparent">
-                  <span class="smallParagraph text-gray-300">I understand and agree to the <a href="#"
+                  <span class="smallParagraph text-gray-300">I understand and agree to the <a
+                        href="{{ route('terms-conditions') }}"
                         class="text-white underline hover:text-[#F0BB4C] transition-colors">Terms &
                         Conditions</a></span>
                </label>
@@ -45,21 +46,22 @@
                </div>
             </div>
             <div class="flex flex-col gap-4">
-               <a href="#"
+               <a href="{{ route('about') }}"
                   class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Learn
                   About us</a>
-               <a href="#"
+               <a href="{{ route('packages') }}"
                   class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Pricing
                   Plans</a>
-               <a href="#"
-                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Team
-                  Member</a>
-               <a href="#"
-                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">View Our
-                  Projects</a>
-               <a href="#"
+               <a href="{{ route('career.index') }}"
+                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Join Our
+                  Care
+                  Team</a>
+               <a href="{{ route('blogs') }}"
                   class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">News &
                   Blog</a>
+               <a href="{{ route('contact') }}"
+                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Contact
+                  Us</a>
             </div>
          </div>
          <div class="flex flex-col gap-6">
@@ -70,21 +72,18 @@
                </div>
             </div>
             <div class="flex flex-col gap-4">
-               <a href="#"
-                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Palliative
-                  and hospice care</a>
-               <a href="#"
-                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Personalized
-                  care plans</a>
-               <a href="#"
-                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Home
-                  safety assessments</a>
-               <a href="#"
+               <a href="/service/rehabilitation-services"
                   class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Rehabilitation
-                  services</a>
-               <a href="#"
-                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Transportation
-                  assistance</a>
+                  Services
+               </a>
+               <a href="/service/home-safety-assessments"
+                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Home
+                  Safety Assessments
+               </a>
+               <a href="/service/personalized-care-plans"
+                  class="smallParagraph font-medium text-gray-300 hover:text-[#F0BB4C] transition-colors w-fit">Personalized
+                  Care Plans
+               </a>
             </div>
          </div>
          <div class="flex flex-col gap-6">
@@ -147,10 +146,12 @@
             &copy; <span class="text-white font-bold">Franklin's.</span> All Rights Reserved.
          </p>
          <div class="flex items-center gap-4">
-            <a href="#" class="smallParagraph text-white font-medium hover:text-[#F0BB4C] transition-colors">Privacy
+            <a href="{{ route('privacy-policy') }}"
+               class="smallParagraph text-white font-medium hover:text-[#F0BB4C] transition-colors">Privacy
                Policy</a>
             <span class="w-1.5 h-1.5 rounded-full bg-[#7E80B0]"></span>
-            <a href="#" class="smallParagraph text-white font-medium hover:text-[#F0BB4C] transition-colors">Terms &
+            <a href="{{ route('terms-conditions') }}"
+               class="smallParagraph text-white font-medium hover:text-[#F0BB4C] transition-colors">Terms &
                Conditions</a>
          </div>
       </div>

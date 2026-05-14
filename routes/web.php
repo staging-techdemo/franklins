@@ -27,6 +27,10 @@ use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\ServicesController;
 use App\Http\Controllers\frontend\BlogDetailController;
 use App\Http\Controllers\frontend\ServiceDetailController;
+use App\Http\Controllers\frontend\CareerController;
+use App\Http\Controllers\frontend\PageController;
+use App\Http\Controllers\frontend\ServiceBookingController;
+use App\Http\Controllers\frontend\PackagesController;
 
 // Root route - Login Page
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])
@@ -41,10 +45,25 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs');
+Route::get('/blog/{slug}', [BlogDetailController::class, 'index'])->name('blog-detail');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/services', [ServicesController::class, 'index'])->name('services');
-Route::get('/blog/{slug}', [BlogDetailController::class, 'index'])->name('blog-detail');
 Route::get('/service/{slug}', [ServiceDetailController::class, 'index'])->name('service-detail');
+
+// Career (Join Team) routes
+Route::get('/join-team', [CareerController::class, 'index'])->name('career.index');
+Route::post('/join-team', [CareerController::class, 'store'])->name('career.store');
+
+// Static Page routes
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy-policy');
+Route::get('/terms-conditions', [PageController::class, 'terms'])->name('terms-conditions');
+
+// Service Booking / Checkout routes
+Route::get('/service-checkout/{slug}', [ServiceBookingController::class, 'checkout'])->name('service.checkout');
+Route::post('/service-checkout', [ServiceBookingController::class, 'store'])->name('service.booking.store');
+
+// Packages route
+Route::get('/packages', [PackagesController::class, 'index'])->name('packages');
 
 // Admin routes (only for authenticated admins)
 Route::middleware(['auth', 'admin'])->group(function () {

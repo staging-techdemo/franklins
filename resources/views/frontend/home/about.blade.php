@@ -47,7 +47,7 @@
                 @endforeach
             </div>
             <div class="flex items-center gap-5 mt-2">
-                <button
+                <a href="{{ route('about') }}"
                     class="bg-[#F0BB4C] text-white subparagraph flex items-center gap-2 font-medium px-6 py-4 rounded-md hover:bg-[#7E80B0] transition-all duration-300">
                     More About Us
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -56,7 +56,7 @@
                         <path d="M17 7l-10 10" />
                         <path d="M8 7l9 0l0 9" />
                     </svg>
-                </button>
+                </a>
                 <div class="flex items-center gap-5">
                     <button
                         class="bg-[#7E80B0] text-white subparagraph flex items-center gap-2 font-medium px-4 py-4 rounded-full hover:bg-[#F0BB4C] hover:text-black transition-all duration-300">

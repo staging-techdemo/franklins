@@ -57,7 +57,7 @@
                            class="text-3xl font-semibold leading-snug mt-5 mb-4 text-black group-hover:text-[#F0BB4C] transition duration-300">
                            {{ $blog->title }}
                         </h3>
-                        <p class="text-gray-600 leading-relaxed text-lg flex-1">
+                        <p class="text-[#666666] leading-relaxed text-lg flex-1">
                            {{ Str::limit(strip_tags($blog->content), 110) }}
                         </p>
                         <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F0BB4C]">

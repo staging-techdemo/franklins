@@ -18,7 +18,7 @@
             Us</a>
       </nav>
       <div>
-         <button
+         <a href="{{ route('packages') }}"
             class="bg-[#F0BB4C] text-black subparagraph flex items-center gap-2 font-medium px-5 py-4 rounded-md hover:bg-[#7E80B0] hover:text-white transition-all duration-300">
             Book Appointment
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -28,7 +28,7 @@
                <path d="M17 7l-10 10" />
                <path d="M8 7l9 0l0 9" />
             </svg>
-         </button>
+         </a>
       </div>
    </div>
 </div>

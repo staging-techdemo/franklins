@@ -4,7 +4,7 @@
          <h2 class="subHeading font-semibold text-black mb-3 leading-tight dmserif">
             Take A Scheduled Appointment
          </h2>
-         <p class="text-gray-600 mb-8">
+         <p class="text-[#666666] mb-8">
             Our booking process is simple confidential and flexible to fit your schedule
          </p>
          <form class="space-y-5">

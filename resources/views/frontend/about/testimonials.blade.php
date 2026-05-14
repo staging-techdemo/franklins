@@ -15,24 +15,11 @@
                </svg>
             </span>
          </h2>
-         <p class="text-gray-600 leading-normal font-medium paragraph max-w-lg">
+         <p class="text-[#666666] leading-normal font-medium paragraph max-w-lg">
             Our Elderly Home & Senior Care facility is dedicated to providing safe, nurturing, and respectful
             environments where seniors can have a high quality of life. We offer personalized care tailored to the
             individual
          </p>
-         <div>
-            <a href="#"
-               class="inline-flex items-center gap-2 bg-[#F0BB4C] text-black font-medium px-6 py-3.5 rounded-md hover:bg-[#7E80B0] hover:text-white transition-all duration-300">
-               View All Testimonials
-               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M17 7l-10 10" />
-                  <path d="M8 7l9 0l0 9" />
-               </svg>
-            </a>
-         </div>
       </div>
       <div class="w-3/5 relative">
          <div class="swiper testimonial-swiper bg-white rounded-3xl shadow-sm p-8">

@@ -4,7 +4,7 @@
          <h2 class="subHeading font-semibold text-black mb-3 leading-tight dmserif">
             Take A Scheduled Appointment
          </h2>
-         <p class="text-gray-600 mb-8">
+         <p class="text-[#666666] mb-8">
             Our booking process is simple confidential and flexible to fit your schedule
          </p>
          <form class="space-y-5">
@@ -21,11 +21,14 @@
             <textarea rows="5" placeholder="Write Your Message"
                class="w-full rounded-xl border-0 bg-white p-5 outline-none resize-none focus:ring-2 focus:ring-[#DFA15B]"></textarea>
             <button type="submit"
-               class="bg-[#E8B06B] hover:bg-[#d89a50] transition text-black font-medium px-8 h-14 rounded-xl flex items-center gap-2">
+               class="bg-[#F0BB4C] text-black subparagraph flex items-center gap-2 font-medium px-5 py-4 rounded-md hover:bg-[#7E80B0] hover:text-white transition-all duration-300">
                Send Message
-               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10" />
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M17 7l-10 10" />
+                  <path d="M8 7l9 0l0 9" />
                </svg>
             </button>
          </form>
