@@ -22,6 +22,9 @@ class ServiceBooking extends Model
         'preferred_date',
         'notes',
         'status',
+        'amount',
+        'payment_status',
+        'stripe_session_id',
     ];
 
     public function service()

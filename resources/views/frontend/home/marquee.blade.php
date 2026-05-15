@@ -23,7 +23,7 @@
       <div class="marquee-content" aria-hidden="true">
          @foreach ($items as $item)
             <span class="marquee-item">
-               <span class="marquee-asterisk">✦</span>
+               <img src="{{ asset('assets/star.png') }}" alt="" class="w-10 h-10 object-contain">
                <span class="marquee-text">{{ $item }}</span>
             </span>
          @endforeach

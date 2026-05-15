@@ -58,9 +58,13 @@ Route::post('/join-team', [CareerController::class, 'store'])->name('career.stor
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy-policy');
 Route::get('/terms-conditions', [PageController::class, 'terms'])->name('terms-conditions');
 
-// Service Booking / Checkout routes
-Route::get('/service-checkout/{slug}', [ServiceBookingController::class, 'checkout'])->name('service.checkout');
-Route::post('/service-checkout', [ServiceBookingController::class, 'store'])->name('service.booking.store');
+// Service Booking / Checkout routes (Authenticated)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/service-checkout/{slug}', [ServiceBookingController::class, 'checkout'])->name('service.checkout');
+    Route::post('/service-checkout', [ServiceBookingController::class, 'store'])->name('service.booking.store');
+    Route::get('/service-booking/success/{id}', [ServiceBookingController::class, 'success'])->name('service.booking.success');
+    Route::get('/service-booking/cancel/{id}', [ServiceBookingController::class, 'cancel'])->name('service.booking.cancel');
+});
 
 // Packages route
 Route::get('/packages', [PackagesController::class, 'index'])->name('packages');

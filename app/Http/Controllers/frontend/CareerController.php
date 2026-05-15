@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\CareerApplication;
 use Illuminate\Http\Request;
+use App\Models\CareerApplication;
+use App\Http\Controllers\Controller;
 
 class CareerController extends Controller
 {

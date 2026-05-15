@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PackagesController extends Controller
 {
@@ -14,7 +14,6 @@ class PackagesController extends Controller
         $services = Service::where('status', 'active')->get();
         $selectedService = $selectedServiceId ? Service::find($selectedServiceId) : $services->first();
 
-        // Sample packages data - in a real app, this could come from a database
         $packages = [
             [
                 'name' => 'Basic Care',
@@ -45,6 +44,6 @@ class PackagesController extends Controller
             ],
         ];
 
-        return view('frontend.services.packages', compact('services', 'selectedService', 'packages'));
+        return view('frontend.packages.index', compact('services', 'selectedService', 'packages'));
     }
 }

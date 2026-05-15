@@ -17,7 +17,7 @@
             class="paragraph text-black font-medium leading-tight transition-colors capitalize duration-300 hover:text-[#C67C48]">Contact
             Us</a>
       </nav>
-      <div>
+      <div class="flex items-center gap-6">
          <a href="{{ route('packages') }}"
             class="bg-[#F0BB4C] text-black subparagraph flex items-center gap-2 font-medium px-5 py-4 rounded-md hover:bg-[#7E80B0] hover:text-white transition-all duration-300">
             Book Appointment
@@ -29,6 +29,45 @@
                <path d="M8 7l9 0l0 9" />
             </svg>
          </a>
+         @auth
+            <div class="relative group">
+               <button class="flex items-center gap-2 outline-none cursor-pointer">
+                  <div
+                     class="w-16 h-16 rounded-full bg-[#DDEEE7] border border-[#4A9D7A] text-[#4A9D7A] flex items-center justify-center font-bold text-lg">
+                     <img
+                        src="{{ auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('assets/placeholder.png') }}"
+                        alt="" class="w-full h-full rounded-full">
+                  </div>
+               </button>
+               <div
+                  class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.08)] py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-gray-100">
+                  <div class="px-5 py-3 border-b border-gray-100">
+                     <p class="text-[14px] font-bold text-gray-800 truncate">{{ Auth::user()->name }}</p>
+                     <p class="text-[12px] text-gray-500 truncate mt-0.5">{{ Auth::user()->email }}</p>
+                  </div>
+                  <div class="py-1">
+                     @if(Auth::user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}"
+                           class="block px-5 py-2.5 text-[13.5px] font-semibold text-gray-700 hover:bg-gray-50 hover:text-[#C67C48] transition-colors">Dashboard</a>
+                     @elseif(Auth::user()->role === 'employee')
+                        <a href="{{ route('employee.dashboard') }}"
+                           class="block px-5 py-2.5 text-[13.5px] font-semibold text-gray-700 hover:bg-gray-50 hover:text-[#C67C48] transition-colors">Dashboard</a>
+                     @else
+                        <a href="{{ route('client.dashboard') }}"
+                           class="block px-5 py-2.5 text-[13.5px] font-semibold text-gray-700 hover:bg-gray-50 hover:text-[#C67C48] transition-colors">Dashboard</a>
+                     @endif
+                  </div>
+                  <div class="py-1 border-t border-gray-100">
+                     <form method="POST" action="{{ route('logout') }}" class="block">
+                        @csrf
+                        <button type="submit"
+                           class="w-full text-left px-5 py-2.5 text-[13.5px] font-semibold text-red-600 hover:bg-red-50 transition-colors cursor-pointer">Log
+                           Out</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         @endauth
       </div>
    </div>
 </div>

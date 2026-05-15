@@ -1,4 +1,4 @@
-<div class="w-full padding-x padding-y">
+<div class="w-full padding-x padding-y bg-white">
    <div class="w-full grid grid-cols-2 gap-10 items-center">
       <div class="bg-gradient-to-br from-[#DDEEE7] to-[#F6ECD9] rounded-3xl px-10 py-20">
          <h2 class="subHeading font-semibold text-black mb-3 leading-tight dmserif">

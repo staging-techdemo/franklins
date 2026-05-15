@@ -18,39 +18,6 @@
                     <div class="text-[22px] font-bold text-theme-text-main">Welcome Back</div>
                     <div class="text-[13px] text-theme-text-muted mt-1">Sign in to your Portal account</div>
                 </div>
-                <div class="grid grid-cols-3 gap-2 mb-6" id="roleTabs">
-                    <button type="button"
-                        class="role-tab active flex flex-col items-center p-2.5 border-[1.5px] border-theme-primary rounded-[10px] cursor-pointer transition-all duration-150 bg-theme-primary-light hover:bg-theme-hover"
-                        onclick="selectRole('admin', this)">
-                        <svg class="w-5 h-5 mb-1.25 text-theme-primary transition-colors" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
-                        <span class="text-[12px] font-semibold text-theme-primary transition-colors">Admin</span>
-                    </button>
-                    <button type="button"
-                        class="role-tab flex flex-col items-center p-2.5 border-[1.5px] border-theme-border rounded-[10px] cursor-pointer transition-all duration-150 bg-theme-card hover:bg-theme-hover"
-                        onclick="selectRole('employee', this)">
-                        <svg class="w-5 h-5 mb-1.25 text-theme-text-muted transition-colors" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                        <span class="text-[12px] font-semibold text-theme-text-muted transition-colors">Employee</span>
-                    </button>
-                    <button type="button"
-                        class="role-tab flex flex-col items-center p-2.5 border-[1.5px] border-theme-border rounded-[10px] cursor-pointer transition-all duration-150 bg-theme-card hover:bg-theme-hover"
-                        onclick="selectRole('client', this)">
-                        <svg class="w-5 h-5 mb-1.25 text-theme-text-muted transition-colors" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                        </svg>
-                        <span class="text-[12px] font-semibold text-theme-text-muted transition-colors">Client</span>
-                    </button>
-                </div>
                 @if ($errors->any())
                     <div
                         class="bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-[9px] p-3 text-[13px] text-red-700 dark:text-red-400 mb-4">
@@ -60,11 +27,10 @@
                 </div> @endif @if (session('status'))
                     <div
                         class="bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-[9px] p-3
-                                                                                                                                                                                                                                                text-[13px] text-green-700 dark:text-green-400 mb-4">
+                                                                                                                                                                                                                                                                text-[13px] text-green-700 dark:text-green-400 mb-4">
                         {{ session('status') }}
                 </div> @endif <form method="POST" action="{{ route('login.store') }}">
                     @csrf
-                    <input type="hidden" name="role" id="selectedRole" value="admin">
                     <div class="mb-4">
                         <label class="block text-[13px] font-semibold text-theme-text-main mb-1.5" for="email">Email
                             address</label>
@@ -126,25 +92,4 @@
             </div>
         </div>
     </div>
-    @push('script')
-        <script> function selectRole(role, el) {
-                const roleInput = document.getElementById('selectedRole'); if (roleInput)
-                    roleInput.value = role; document.querySelectorAll('.role-tab').forEach(t => {
-                        t.classList.remove('active', 'border-theme-primary', 'bg-theme-primary-light');
-                        t.classList.add('border-theme-border', 'bg-theme-card');
-                        t.querySelector('svg').classList.remove('text-theme-primary');
-                        t.querySelector('span').classList.remove('text-theme-primary');
-                        t.querySelector('svg').classList.add('text-theme-text-muted');
-                        t.querySelector('span').classList.add('text-theme-text-muted');
-                    });
-
-                el.classList.remove('border-theme-border', 'bg-theme-card');
-                el.classList.add('active', 'border-theme-primary', 'bg-theme-primary-light');
-                el.querySelector('svg').classList.remove('text-theme-text-muted');
-                el.querySelector('span').classList.remove('text-theme-text-muted');
-                el.querySelector('svg').classList.add('text-theme-primary');
-                el.querySelector('span').classList.add('text-theme-primary');
-            }
-        </script>
-    @endpush
 @endsection

@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="grid grsm:grid-cols-1 xm:grid-cols-1 grid-cols-3 gap-6 mb-8">
         <div class="bg-white rounded-[14px] p-6 border border-slate-200 shadow-sm">
             <div class="text-slate-400 text-[12px] font-bold uppercase tracking-widest mb-1">Assigned Clients</div>
             <div class="text-3xl font-extrabold text-slate-800">{{ $clients }}</div>
@@ -81,19 +81,19 @@
 
                         ]
                     ] as $act)
-                        <div class="flex gap-4">
-                            <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 font-bold text-sm">
-                                {{ strtoupper(substr($act['name'] ?? 'C', 0, 1)) }}
-                            </div>
-                            <div>
-                                <p class="text-[13.5px] text-slate-700 leading-snug"><b>{{ $act['name'] ?? 'Client' }}</b> submitted a new service request.</p>
-                                <p class="text-[11.5px] text-slate-400 mt-1">{{ $act['time'] }}</p>
-                            </div>
-                        </div>
+                                            <div class="flex gap-4">
+                                                <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 font-bold text-sm">
+                                                    {{ strtoupper(substr($act['name'] ?? 'C', 0, 1)) }}
+                                                </div>
+                                                <div>
+                                                    <p class="text-[13.5px] text-slate-700 leading-snug"><b>{{ $act['name'] ?? 'Client' }}</b> submitted a new service request.</p>
+                                                    <p class="text-[11.5px] text-slate-400 mt-1">{{ $act['time'] }}</p>
+                                                </div>
+                                            </div>
                 @empty
                         <div class="text-center py-4 text-slate-400 text-[13.5px]">No recent activity.</div>
                     @endforelse
-                        </div>
-                    </div>
-                </div>
+                                    </div>
+                                </div>
+                            </div>
 @endsection

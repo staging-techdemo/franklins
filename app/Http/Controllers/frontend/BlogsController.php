@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Tag;
 use App\Models\Blog;
 use App\Models\Category;
-use App\Models\Tag;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BlogsController extends Controller
 {
@@ -20,16 +20,16 @@ class BlogsController extends Controller
         $blogs = Blog::with(['category', 'user'])
             ->where('status', 'published')
             ->when($search, function ($query) use ($search) {
-                return $query->where(function($q) use ($search) {
+                return $query->where(function ($q) use ($search) {
                     $q->where('title', 'like', "%{$search}%")
-                      ->orWhere('content', 'like', "%{$search}%");
+                        ->orWhere('content', 'like', "%{$search}%");
                 });
             })
             ->when($categoryId, function ($query) use ($categoryId) {
                 return $query->where('category_id', $categoryId);
             })
             ->when($tagId, function ($query) use ($tagId) {
-                return $query->whereHas('tags', function($q) use ($tagId) {
+                return $query->whereHas('tags', function ($q) use ($tagId) {
                     $q->where('tags.id', $tagId);
                 });
             })
