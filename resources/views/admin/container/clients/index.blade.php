@@ -7,14 +7,7 @@
             <div class="text-[13px] text-theme-text-muted mt-1">Manage client profiles, service plans, and active
                 assignments.</div>
         </div>
-        <a href="{{ route('admin.clients.create') }}"
-            class="px-5 py-2.5 bg-theme-primary text-white rounded-[10px] text-[13px] font-bold shadow-md hover:bg-theme-primary-hover transition-all flex items-center gap-2">
-            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-            Add New Client
-        </a>
+
     </div>
     @if (session('success'))
         <div class="bg-green-100 border border-green-200 text-green-700 px-4 py-3 rounded-[10px] mb-5 text-sm font-bold">

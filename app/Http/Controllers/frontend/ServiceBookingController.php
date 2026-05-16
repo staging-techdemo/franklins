@@ -13,9 +13,11 @@ class ServiceBookingController extends Controller
     public function checkout($slug, Request $request)
     {
         $service = Service::where('slug', $slug)->firstOrFail();
-        $plan = $request->query('plan', 'monthly');
+        $planSlug = $request->query('plan');
 
-        return view('frontend.checkout.index', compact('service', 'plan'));
+        $package = \App\Models\Package::whereRaw('LOWER(REPLACE(name, " ", "")) = ?', [$planSlug])->first();
+
+        return view('frontend.checkout.checkout', compact('service', 'package', 'planSlug'));
     }
 
     public function store(Request $request)
@@ -35,12 +37,18 @@ class ServiceBookingController extends Controller
             'payment_method_id' => 'required|string',
         ]);
 
-        $amount = $validated['plan_type'] === 'monthly' ? 1200 : 150;
+        $package = \App\Models\Package::whereRaw('LOWER(REPLACE(name, " ", "")) = ?', [$validated['plan_type']])->first();
+        $amount = $package ? $package->amount : 0;
+
+        if ($amount <= 0) {
+            return back()->with('error', 'Invalid package or amount. Please contact support.');
+        }
 
         $booking = ServiceBooking::create(array_merge($validated, [
             'amount' => $amount,
             'payment_status' => 'pending',
-            'status' => 'pending'
+            'status' => 'pending',
+            'user_id' => \Auth::id(),
         ]));
 
         try {
@@ -62,6 +70,25 @@ class ServiceBookingController extends Controller
                     'status' => 'confirmed',
                     'stripe_session_id' => $paymentIntent->id
                 ]);
+
+                // Automatically create/update Client record
+                $user = \Auth::user();
+                if ($user && $user->role !== 'admin') {
+                    $user->update(['role' => 'client']);
+                }
+
+                if ($user) {
+                    \App\Models\Client::firstOrCreate(
+                        ['user_id' => $user->id],
+                        [
+                            'client_custom_id' => 'C-' . rand(1000, 9999),
+                            'phone' => 'N/A',
+                            'region' => $booking->city . ', ' . $booking->state,
+                            'care_plan' => $booking->plan_type,
+                            'status' => 'Pending',
+                        ]
+                    );
+                }
 
                 return redirect()->route('service.booking.success', ['id' => $booking->id]);
             }

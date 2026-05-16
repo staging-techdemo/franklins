@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\PackageController;
 
 // Auth Controllers
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -75,21 +76,25 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('/dashboard/clients', ClientController::class)->names('admin.clients');
 
-    Route::resource('/dashboard/employees', EmployeeController::class)->names('admin.employees');
+    Route::resource('/dashboard/employees', App\Http\Controllers\Admin\Employee\EmployeeController::class, ['names' => 'admin.employees']);
+    Route::post('/dashboard/employees/approve/{id}', [App\Http\Controllers\Admin\Employee\EmployeeController::class, 'approveApplication'])->name('admin.employees.approve');
     Route::get('/dashboard/attendance', [AdminHomePageController::class, 'attendance'])->name('admin.attendance');
     Route::get('/dashboard/payments', [AdminHomePageController::class, 'payments'])->name('admin.payments');
     Route::get('/dashboard/outdoor', [AdminHomePageController::class, 'outdoor'])->name('admin.outdoor');
 
     Route::get('/dashboard/requests', [ClientRequestController::class, 'index'])->name('admin.requests.index');
     Route::put('/dashboard/requests/{clientRequest}/status', [ClientRequestController::class, 'updateStatus'])->name('admin.requests.updateStatus');
-    Route::get('/dashboard/complaints', [AdminHomePageController::class, 'complaints'])->name('admin.complaints');
+    Route::get('/dashboard/complaints', [App\Http\Controllers\Admin\Complaint\ComplaintController::class, 'index'])->name('admin.complaints');
+    Route::put('/dashboard/complaints/{complaint}/status', [App\Http\Controllers\Admin\Complaint\ComplaintController::class, 'updateStatus'])->name('admin.complaints.updateStatus');
     Route::get('/dashboard/notifications', [AdminHomePageController::class, 'notifications'])->name('admin.notifications');
+    Route::post('/dashboard/notifications/broadcast', [AdminHomePageController::class, 'storeBroadcast'])->name('admin.notifications.broadcast');
     Route::get('/dashboard/reports', [AdminHomePageController::class, 'reports'])->name('admin.reports');
 
     // Dynamic Content Routes
     Route::resource('/dashboard/services', ServiceController::class)->names('admin.services');
     Route::resource('/dashboard/blogs', BlogController::class)->names('admin.blogs');
     Route::resource('/dashboard/categories', CategoryController::class)->names('admin.categories');
+    Route::resource('/dashboard/packages', PackageController::class)->names('admin.packages');
 
     // Tag API routes (used for inline tag creation on blog forms)
     Route::post('/dashboard/tags', [TagController::class, 'store'])->name('admin.tags.store');

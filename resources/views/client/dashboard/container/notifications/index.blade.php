@@ -7,7 +7,7 @@
             <div class="text-[13px] text-theme-text-muted mt-1">Manage system-wide broadcasts and personalized alerts.</div>
         </div>
     </div>
-    <div class="grid sm:grid-cols-1 xm:grid-cols-1 grid-cols-3 gap-5 my-5">
+    <div class="grid grid-cols-1 gap-5 my-5">
         <div class="lg:col-span-2 space-y-4">
             <div class="bg-theme-card rounded-[14px] border border-theme-border overflow-hidden shadow-sm">
                 <div class="px-6 py-5 border-b border-theme-border flex items-center justify-between">
@@ -41,34 +41,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div>
-            <div class="bg-theme-card rounded-[14px] border border-theme-border p-6 shadow-sm">
-                <h3 class="text-[14.5px] font-bold text-theme-text-main mb-6">Send Quick Broadcast</h3>
-                <form class="space-y-4">
-                    <div>
-                        <label
-                            class="text-[11px] font-bold text-theme-text-muted uppercase tracking-widest block mb-2">Audience</label>
-                        <select
-                            class="w-full bg-theme-bg border border-theme-border rounded-lg px-4 py-2 text-[13px] font-medium outline-none">
-                            <option>All Users</option>
-                            <option>Clients Only</option>
-                            <option>Agents Only</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label
-                            class="text-[11px] font-bold text-theme-text-muted uppercase tracking-widest block mb-2">Message</label>
-                        <textarea
-                            class="w-full bg-theme-bg border border-theme-border rounded-lg px-4 py-3 text-[13px] h-32 outline-none focus:border-[#1a3cdc]"
-                            placeholder="Type your broadcast message..."></textarea>
-                    </div>
-                    <button type="submit"
-                        class="w-full py-2.5 bg-[#1a3cdc] text-white rounded-lg text-[13px] font-bold shadow-md hover:bg-[#1230b0] transition-all">Send
-                        Notification</button>
-                </form>
             </div>
         </div>
     </div>

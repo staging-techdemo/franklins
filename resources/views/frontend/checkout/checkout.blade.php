@@ -39,7 +39,7 @@
                                 @endif
 
                                 <input type="hidden" name="service_id" value="{{ $service->id }}">
-                                <input type="hidden" name="plan_type" value="{{ $plan }}">
+                                <input type="hidden" name="plan_type" value="{{ $planSlug }}">
                                 <div class="grid grid-cols-2 gap-6 sm:grid-cols-1">
                                     <div class="space-y-1.5">
                                         <label class="text-xs font-bold uppercase tracking-wider text-gray-500 ml-1">Patient
@@ -181,15 +181,14 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-black leading-tight">{{ $service->title }}</h4>
-                                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">{{ $plan }}
+                                    <p class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-bold">{{ $package->name }}
                                         Plan</p>
                                 </div>
                             </div>
-                            <div class="space-y-4 text-sm">
-                                <div class="flex justify-between">
+                                 <div class="flex justify-between">
                                     <span class="text-gray-500">Care Plan Cost</span>
                                     <span
-                                        class="font-bold text-black">{{ $plan == 'monthly' ? '$1,200.00' : '$150.00' }}</span>
+                                        class="font-bold text-black">{{ $package->price }}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-500">Service Fee</span>
@@ -198,9 +197,8 @@
                                 <div class="flex justify-between pt-4 border-t border-gray-50">
                                     <span class="text-lg font-bold text-black">Total</span>
                                     <span
-                                        class="text-lg font-bold text-[#7E80B0]">{{ $plan == 'monthly' ? '$1,200.00' : '$150.00' }}</span>
+                                        class="text-lg font-bold text-[#7E80B0]">{{ $package->price }}</span>
                                 </div>
-                            </div>
                             <div class="mt-8 bg-[#DDEEE7] p-4 rounded-xl flex gap-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#4A9D7A] shrink-0" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">

@@ -19,7 +19,8 @@
         <div class="flex items-center gap-6">
             <div
                 class="w-20 h-20 rounded-full bg-theme-bg border-4 border-theme-border flex items-center justify-center text-3xl font-extrabold text-theme-primary">
-                {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                <img src="{{ auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('assets/placeholder.png') }}"
+                    alt="" class="w-full h-full rounded-full">
             </div>
             <div>
                 <h2 class="text-2xl font-bold text-theme-main">{{ Auth::user()->name }}</h2>
@@ -43,59 +44,55 @@
         </div>
 
         <div class="bg-theme-card rounded-[14px] p-6 border border-theme-border shadow-sm">
-            <div class="text-theme-muted text-[12px] font-bold uppercase tracking-widest mb-1">Care Plan</div>
-            <div class="text-2xl font-extrabold text-theme-main">{{ $clientRecord->care_plan ?? 'Standard Care' }}</div>
-            <div class="mt-4 text-theme-primary text-[11.5px] font-bold">Currently Active</div>
+            <div class="text-theme-muted text-[12px] font-bold uppercase tracking-widest mb-1">Active Plan</div>
+            <div class="text-2xl font-extrabold text-theme-main">
+                {{ $stats['active_plan']->service->title ?? 'None Active' }}
+            </div>
+            <div class="mt-4 text-theme-primary text-[11.5px] font-bold">
+                {{ $stats['active_plan'] ? ucfirst($stats['active_plan']->plan_type) . ' Plan' : 'Choose a package' }}
+            </div>
         </div>
 
         <div class="bg-theme-card rounded-[14px] p-6 border border-theme-border shadow-sm">
-            <div class="text-theme-muted text-[12px] font-bold uppercase tracking-widest mb-1">Recent Requests</div>
-            <div class="text-3xl font-extrabold text-theme-main">{{ collect($requests)->count() }}</div>
-            <div class="mt-4 text-theme-muted text-[11.5px] font-medium">Submitted this period</div>
+            <div class="text-theme-muted text-[12px] font-bold uppercase tracking-widest mb-1">Total Requests</div>
+            <div class="text-3xl font-extrabold text-theme-main">{{ $stats['total_requests'] + $stats['total_bookings'] }}</div>
+            <div class="mt-4 text-theme-muted text-[11.5px] font-medium">Combined services & queries</div>
         </div>
     </div>
 
     <div class="space-y-8">
-        {{-- Requests Table --}}
+        {{-- Bookings Table --}}
         <div class="bg-theme-card rounded-[14px] border border-theme-border overflow-hidden shadow-sm">
             <div class="px-6 py-5 border-b border-theme-border flex items-center justify-between">
-                <h3 class="text-[15px] font-extrabold text-theme-main">My Recent Requests</h3>
-                <a href="{{ route('client.requests.index') }}"
+                <h3 class="text-[15px] font-extrabold text-theme-main">Recent Care Bookings</h3>
+                <a href="{{ route('client.requests.index', ['tab' => 'bookings']) }}"
                     class="text-[12px] font-bold text-theme-primary hover:underline">View All</a>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-[13.5px]">
                     <thead class="bg-theme-bg border-b border-theme-border">
                         <tr>
-                            <th class="px-6 py-3 font-bold text-theme-muted uppercase tracking-widest text-[10px]">Request
-                                Type</th>
-                            <th class="px-6 py-3 font-bold text-theme-muted uppercase tracking-widest text-[10px]">Submitted
-                                On</th>
-                            <th class="px-6 py-3 font-bold text-theme-muted uppercase tracking-widest text-[10px]">Status
-                            </th>
+                            <th class="px-6 py-3 font-bold text-theme-muted uppercase tracking-widest text-[10px]">Service</th>
+                            <th class="px-6 py-3 font-bold text-theme-muted uppercase tracking-widest text-[10px]">Plan</th>
+                            <th class="px-6 py-3 font-bold text-theme-muted uppercase tracking-widest text-[10px]">Amount</th>
+                            <th class="px-6 py-3 font-bold text-theme-muted uppercase tracking-widest text-[10px]">Status</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-theme-border text-theme-main">
-                        @forelse($requests as $request)
+                        @forelse($bookings as $booking)
                             <tr class="hover:bg-theme-hover transition-colors">
-                                <td class="px-6 py-4 font-semibold">{{ $request->type }}</td>
-                                <td class="px-6 py-4 text-theme-muted">{{ $request->created_at->format('d M Y') }}</td>
+                                <td class="px-6 py-4 font-semibold">{{ $booking->service->title }}</td>
+                                <td class="px-6 py-4 text-theme-muted capitalize">{{ $booking->plan_type }}</td>
+                                <td class="px-6 py-4 font-bold text-theme-primary">${{ number_format($booking->amount, 2) }}</td>
                                 <td class="px-6 py-4">
-                                    @if($request->status === 'Pending')
-                                        <span
-                                            class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-600 text-[10px] font-bold uppercase">Pending</span>
-                                    @elseif($request->status === 'Approved')
-                                        <span
-                                            class="px-2 py-0.5 rounded-full bg-green-100 text-green-600 text-[10px] font-bold uppercase">Approved</span>
-                                    @else
-                                        <span
-                                            class="px-2 py-0.5 rounded-full bg-red-100 text-red-600 text-[10px] font-bold uppercase">{{ $request->status }}</span>
-                                    @endif
+                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase {{ $booking->status === 'confirmed' ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600' }}">
+                                        {{ $booking->status }}
+                                    </span>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="px-6 py-8 text-center text-theme-muted">No requests found.</td>
+                                <td colspan="4" class="px-6 py-8 text-center text-theme-muted">No care bookings found.</td>
                             </tr>
                         @endforelse
                     </tbody>

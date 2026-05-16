@@ -92,14 +92,19 @@
             </div>
          </div>
          <div class="mb-8">
-            <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Content Management</div>
+            <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Content Management
+            </div>
             <div class="space-y-1">
                <a href="{{ route('admin.services.index') }}"
                   class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.services.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
                   <div class="flex items-center gap-3">
-                     <svg class="w-[18px] h-[18px] {{ Request::routeIs('admin.services.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                     <svg
+                        class="w-[18px] h-[18px] {{ Request::routeIs('admin.services.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M21 16V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z" />
-                        <path d="M7 21h10" /><path d="M9 16v5" /><path d="M15 16v5" />
+                        <path d="M7 21h10" />
+                        <path d="M9 16v5" />
+                        <path d="M15 16v5" />
                      </svg>
                      <span class="text-[13.5px] font-bold">Services</span>
                   </div>
@@ -107,7 +112,9 @@
                <a href="{{ route('admin.blogs.index') }}"
                   class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.blogs.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
                   <div class="flex items-center gap-3">
-                     <svg class="w-[18px] h-[18px] {{ Request::routeIs('admin.blogs.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                     <svg
+                        class="w-[18px] h-[18px] {{ Request::routeIs('admin.blogs.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                         <path d="M2 10h20" />
                      </svg>
@@ -117,10 +124,24 @@
                <a href="{{ route('admin.categories.index') }}"
                   class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.categories.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
                   <div class="flex items-center gap-3">
-                     <svg class="w-[18px] h-[18px] {{ Request::routeIs('admin.categories.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                     <svg
+                        class="w-[18px] h-[18px] {{ Request::routeIs('admin.categories.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
                      </svg>
                      <span class="text-[13.5px] font-bold">Categories</span>
+                  </div>
+               </a>
+               <a href="{{ route('admin.packages.index') }}"
+                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.packages.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                  <div class="flex items-center gap-3">
+                     <svg
+                        class="w-[18px] h-[18px] {{ Request::routeIs('admin.packages.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                     </svg>
+                     <span class="text-[13.5px] font-bold">Packages</span>
                   </div>
                </a>
             </div>
@@ -138,7 +159,8 @@
                      </svg>
                      <span class="text-[13.5px] font-bold">Client Requests</span>
                   </div>
-                  <span class="px-1.5 py-0.5 rounded-full bg-red-100 text-red-600 text-[9px] font-extrabold">12</span>
+                  <span
+                     class="px-1.5 py-0.5 rounded-full bg-red-100 text-red-600 text-[9px] font-extrabold">{{ $pendingRequestsCount ?? 0 }}</span>
                </a>
                <a href="{{ route('admin.complaints') }}"
                   class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('admin.complaints') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
@@ -153,7 +175,8 @@
                      </svg>
                      <span class="text-[13.5px] font-bold">Complaints</span>
                   </div>
-                  <span class="px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-600 text-[9px] font-extrabold">5</span>
+                  <span
+                     class="px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-600 text-[9px] font-extrabold">{{ $pendingComplaintsCount ?? 0 }}</span>
                </a>
             </div>
          </div>
@@ -199,7 +222,7 @@
                </a>
             </div>
          </div>
-      @elseif(Auth::user()->role === 'employee')
+      @elseif(Auth::user()->role === 'employee' || Auth::user()->role === 'user')
          <div class="mb-8">
             <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Main</div>
             <div class="space-y-1">
@@ -216,65 +239,67 @@
                </a>
             </div>
          </div>
-         <div class="mb-8">
-            <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Operations</div>
-            <div class="space-y-1">
-               <a href="{{ route('employee.clients.index') }}"
-                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.clients.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
-                  <div class="flex items-center gap-3">
-                     <svg
-                        class="w-[18px] h-[18px] {{ Request::routeIs('employee.clients.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                     </svg>
-                     <span class="text-[13.5px] font-bold">Assigned Clients</span>
-                  </div>
-               </a>
-               <a href="{{ route('employee.attendance') }}"
-                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.attendance') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
-                  <div class="flex items-center gap-3">
-                     <svg
-                        class="w-[18px] h-[18px] {{ Request::routeIs('employee.attendance') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path d="M9 11l3 3L22 4" />
-                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-                     </svg>
-                     <span class="text-[13.5px] font-bold">My Attendance</span>
-                  </div>
-               </a>
-               <a href="{{ route('employee.outdoor') }}"
-                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.outdoor') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
-                  <div class="flex items-center gap-3">
-                     <svg
-                        class="w-[18px] h-[18px] {{ Request::routeIs('employee.outdoor') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                     </svg>
-                     <span class="text-[13.5px] font-bold">Outdoor Activities</span>
-                  </div>
-               </a>
+         @if(Auth::user()->role === 'employee')
+            <div class="mb-8">
+               <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Operations</div>
+               <div class="space-y-1">
+                  <a href="{{ route('employee.clients.index') }}"
+                     class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.clients.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                     <div class="flex items-center gap-3">
+                        <svg
+                           class="w-[18px] h-[18px] {{ Request::routeIs('employee.clients.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                           fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                           <circle cx="9" cy="7" r="4" />
+                           <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        <span class="text-[13.5px] font-bold">Assigned Clients</span>
+                     </div>
+                  </a>
+                  <a href="{{ route('employee.attendance') }}"
+                     class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.attendance') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                     <div class="flex items-center gap-3">
+                        <svg
+                           class="w-[18px] h-[18px] {{ Request::routeIs('employee.attendance') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                           fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                           <path d="M9 11l3 3L22 4" />
+                           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                        </svg>
+                        <span class="text-[13.5px] font-bold">My Attendance</span>
+                     </div>
+                  </a>
+                  <a href="{{ route('employee.outdoor') }}"
+                     class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.outdoor') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                     <div class="flex items-center gap-3">
+                        <svg
+                           class="w-[18px] h-[18px] {{ Request::routeIs('employee.outdoor') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                           fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                           <circle cx="12" cy="12" r="10" />
+                           <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <span class="text-[13.5px] font-bold">Outdoor Activities</span>
+                     </div>
+                  </a>
+               </div>
             </div>
-         </div>
-         <div class="mb-8">
-            <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Support</div>
-            <div class="space-y-1">
-               <a href="{{ route('employee.requests.index') }}"
-                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.requests.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
-                  <div class="flex items-center gap-3">
-                     <svg
-                        class="w-[18px] h-[18px] {{ Request::routeIs('employee.requests.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                     </svg>
-                     <span class="text-[13.5px] font-bold">Client Requests</span>
-                  </div>
-               </a>
+            <div class="mb-8">
+               <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Support</div>
+               <div class="space-y-1">
+                  <a href="{{ route('employee.requests.index') }}"
+                     class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('employee.requests.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                     <div class="flex items-center gap-3">
+                        <svg
+                           class="w-[18px] h-[18px] {{ Request::routeIs('employee.requests.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                           fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        <span class="text-[13.5px] font-bold">Client Requests</span>
+                     </div>
+                  </a>
+               </div>
             </div>
-         </div>
+         @endif
          <div>
             <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">System</div>
             <div class="space-y-1">
@@ -403,12 +428,12 @@
 </aside>
 
 <script>
-    // Fix: sidebar scroll works with mouse wheel without needing to click first
-    const sidebarScroll = document.getElementById('sidebar-scroll');
-    if (sidebarScroll) {
-        sidebarScroll.addEventListener('wheel', function(e) {
-            e.preventDefault();
-            sidebarScroll.scrollTop += e.deltaY;
-        }, { passive: false });
-    }
+   // Fix: sidebar scroll works with mouse wheel without needing to click first
+   const sidebarScroll = document.getElementById('sidebar-scroll');
+   if (sidebarScroll) {
+      sidebarScroll.addEventListener('wheel', function (e) {
+         e.preventDefault();
+         sidebarScroll.scrollTop += e.deltaY;
+      }, { passive: false });
+   }
 </script>

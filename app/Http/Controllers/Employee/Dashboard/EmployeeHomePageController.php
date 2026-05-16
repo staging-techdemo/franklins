@@ -11,24 +11,37 @@ class EmployeeHomePageController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $clients = User::where('role', 'client')->orWhere('role', 'user')->count();
+        $employeeRecord = \App\Models\Employee::where('user_id', $user->id)->first();
+        $application = \App\Models\CareerApplication::where('user_id', $user->id)->latest()->first();
+        
+        $stats = [
+            'total_clients' => \App\Models\Client::where('agent_id', $user->id)->count(),
+            'total_requests' => \App\Models\ClientRequest::whereHas('client', function($q) use ($user) {
+                $q->where('agent_id', $user->id);
+            })->count(),
+            'active_cases' => \App\Models\Client::where('agent_id', $user->id)->where('status', 'Active')->count(),
+        ];
 
         return view('employee.container.home.dashboard', [
             'title' => 'Employee Dashboard - Franklin\'s Forever Care',
             'user' => $user,
-            'clients' => $clients,
+            'employeeRecord' => $employeeRecord,
+            'application' => $application,
+            'stats' => $stats,
         ]);
     }
 
     public function clients()
     {
-        $clients = \App\Models\Client::with(['user', 'agent'])->where('agent_id', Auth::id())->latest()->paginate(10);
+        $user = Auth::user();
+        $clients = \App\Models\Client::with(['user'])->where('agent_id', $user->id)->latest()->paginate(10);
+        
         $stats = [
-            'total' => \App\Models\Client::where('agent_id', Auth::id())->count(),
-            'active_plans' => \App\Models\Client::where('agent_id', Auth::id())->where('status', 'Active')->count(),
-            'pending_assignment' => 0,
-            'critical_cases' => \App\Models\Client::where('agent_id', Auth::id())->where('status', 'Critical')->count(),
+            'total' => \App\Models\Client::where('agent_id', $user->id)->count(),
+            'active_plans' => \App\Models\Client::where('agent_id', $user->id)->where('status', 'Active')->count(),
+            'critical_cases' => \App\Models\Client::where('agent_id', $user->id)->where('status', 'Critical')->count(),
         ];
+
         return view('employee.container.clients.index', compact('clients', 'stats'));
     }
 
@@ -44,7 +57,13 @@ class EmployeeHomePageController extends Controller
 
     public function requests(\Illuminate\Http\Request $request)
     {
-        $query = \App\Models\ClientRequest::with(['client.user'])->latest();
+        $user = Auth::user();
+        $query = \App\Models\ClientRequest::with(['client.user'])
+            ->whereHas('client', function($q) use ($user) {
+                $q->where('agent_id', $user->id);
+            })
+            ->latest();
+
         $activeTab = $request->query('tab', 'all');
         if ($activeTab !== 'all') {
             $query->where('type', $activeTab);
@@ -52,10 +71,12 @@ class EmployeeHomePageController extends Controller
         $requests = $query->paginate(10)->appends(['tab' => $activeTab]);
         
         $stats = [
-            'total' => \App\Models\ClientRequest::count(),
-            'change_agent' => \App\Models\ClientRequest::where('type', 'Change Agent')->count(),
-            'outdoor' => \App\Models\ClientRequest::where('type', 'Outdoor Access')->count(),
-            'cancellations' => \App\Models\ClientRequest::where('type', 'Cancellations')->count(),
+            'total' => \App\Models\ClientRequest::whereHas('client', function($q) use ($user) {
+                $q->where('agent_id', $user->id);
+            })->count(),
+            'change_agent' => \App\Models\ClientRequest::where('type', 'Change Agent')->whereHas('client', function($q) use ($user) {
+                $q->where('agent_id', $user->id);
+            })->count(),
         ];
 
         return view('employee.container.requests.index', compact('requests', 'stats', 'activeTab'));

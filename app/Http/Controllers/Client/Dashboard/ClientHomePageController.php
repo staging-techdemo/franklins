@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client\Dashboard;
 use App\Models\User;
 use App\Models\ClientRequest;
 use App\Models\Client;
+use App\Models\ServiceBooking;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,40 +20,58 @@ class ClientHomePageController extends Controller
     {
         $user = Auth::user();
         $clientRecord = Client::with('agent')->where('user_id', $user->id)->first();
+        
         $requests = ClientRequest::where('client_id', $clientRecord->id ?? 0)->latest()->take(5)->get();
+        $bookings = ServiceBooking::where('user_id', $user->id)->latest()->take(5)->get();
+        
+        $stats = [
+            'total_requests' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->count(),
+            'total_bookings' => ServiceBooking::where('user_id', $user->id)->count(),
+            'active_plan' => ServiceBooking::where('user_id', $user->id)->where('status', 'confirmed')->first(),
+        ];
 
         return view('client.dashboard.container.home.dashboard', [
             'title' => 'Client Dashboard - Franklin\'s Forever Care',
             'user' => $user,
             'clientRecord' => $clientRecord,
             'requests' => $requests,
+            'bookings' => $bookings,
+            'stats' => $stats,
         ]);
     }
 
     public function requests(Request $request)
     {
-        $clientRecord = Client::where('user_id', Auth::id())->first();
-        $query = ClientRequest::with(['client.user'])->where('client_id', $clientRecord->id ?? 0)->latest();
-        $activeTab = $request->query('tab', 'all');
-        if ($activeTab !== 'all') {
-            $query->where('type', $activeTab);
-        }
-        $requests = $query->paginate(10)->appends(['tab' => $activeTab]);
+        $user = Auth::user();
+        $clientRecord = Client::where('user_id', $user->id)->first();
         
+        $activeTab = $request->query('tab', 'bookings');
+        
+        if ($activeTab === 'bookings') {
+            $data = ServiceBooking::with('service')->where('user_id', $user->id)->latest()->paginate(10);
+        } else {
+            $data = ClientRequest::where('client_id', $clientRecord->id ?? 0)->latest()->paginate(10);
+        }
+
         $stats = [
-            'total' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->count(),
-            'change_agent' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->where('type', 'Change Agent')->count(),
-            'outdoor' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->where('type', 'Outdoor Access')->count(),
-            'cancellations' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->where('type', 'Cancellations')->count(),
+            'total_bookings' => ServiceBooking::where('user_id', $user->id)->count(),
+            'total_requests' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->count(),
         ];
 
-        return view('client.dashboard.container.requests.index', compact('requests', 'stats', 'activeTab'));
+        return view('client.dashboard.container.requests.index', compact('data', 'stats', 'activeTab'));
     }
 
     public function carePlan()
     {
-        $clientRecord = Client::with('agent')->where('user_id', Auth::id())->first();
-        return view('client.dashboard.container.care-plan.index', compact('clientRecord'));
+        $user = Auth::user();
+        $clientRecord = Client::with('agent')->where('user_id', $user->id)->first();
+        $activeBookings = ServiceBooking::with('service')
+            ->where('user_id', $user->id)
+            ->where('status', 'confirmed')
+            ->latest()
+            ->get();
+
+        return view('client.dashboard.container.care-plan.index', compact('clientRecord', 'activeBookings'));
     }
 
     public function notifications()

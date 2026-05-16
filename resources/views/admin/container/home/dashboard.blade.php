@@ -50,7 +50,7 @@
                 <span class="px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 text-[10.5px] font-bold">{{ $stats['active_duty'] }} Active Duty</span>
             </div>
         </a>
-        <a href="{{ route('admin.requests.index') }}"
+        <a href="{{ route('admin.employees.index') }}"
             class="bg-theme-primary rounded-[14px] p-5 shadow-lg relative overflow-hidden text-white hover:bg-theme-primary-hover transition-colors group">
             <div
                 class="w-10 h-10 rounded-[10px] bg-white/20 flex items-center justify-center text-white mb-5 group-hover:bg-white group-hover:text-[#1a3cdc] transition-colors">
@@ -59,10 +59,10 @@
                     <path d="M12 8v4m0 4h.01" />
                 </svg>
             </div>
-            <div class="text-white/70 text-[12.5px] font-medium uppercase tracking-wide">Pending Bookings</div>
-            <div class="text-2xl font-extrabold text-white mt-1">{{ $stats['pending_requests'] }}</div>
+            <div class="text-white/70 text-[12.5px] font-medium uppercase tracking-wide">Pending Apps & Bookings</div>
+            <div class="text-2xl font-extrabold text-white mt-1">{{ $stats['pending_requests'] + $stats['pending_applications'] }}</div>
             <div class="mt-3 flex items-center">
-                <span class="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10.5px] font-bold">New orders</span>
+                <span class="px-2 py-0.5 rounded-full bg-white/20 text-white text-[10.5px] font-bold">{{ $stats['pending_applications'] }} New Career Submissions</span>
             </div>
             <div class="absolute -right-5 -bottom-5 w-24 h-24 bg-white/10 rounded-full"></div>
         </a>

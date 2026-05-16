@@ -26,7 +26,9 @@ class CareerController extends Controller
             'message' => 'nullable|string',
         ]);
 
-        CareerApplication::create($validated);
+        CareerApplication::create(array_merge($validated, [
+            'user_id' => auth()->id()
+        ]));
 
         return back()->with('success', 'Your application has been submitted successfully. We will get back to you soon!');
     }
