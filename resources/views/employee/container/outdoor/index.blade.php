@@ -1,5 +1,5 @@
 @extends('layouts.employee')
-
+@section('title', 'Outdoor')
 @section('employee-content')
     <div class="w-full flex items-center justify-between gap-5">
         <div>

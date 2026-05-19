@@ -65,7 +65,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/service-checkout', [ServiceBookingController::class, 'store'])->name('service.booking.store');
     Route::get('/service-booking/success/{id}', [ServiceBookingController::class, 'success'])->name('service.booking.success');
     Route::get('/service-booking/cancel/{id}', [ServiceBookingController::class, 'cancel'])->name('service.booking.cancel');
+    Route::post('/service-booking/{id}/cancel-subscription', [ServiceBookingController::class, 'cancelSubscription'])->name('service.booking.cancel-subscription');
 });
+
+// Stripe Webhook (outside auth middleware, CSRF exempt)
+Route::post('/stripe/webhook', [\App\Http\Controllers\WebhookController::class, 'handle'])->name('stripe.webhook');
 
 // Packages route
 Route::get('/packages', [PackagesController::class, 'index'])->name('packages');
@@ -113,6 +117,7 @@ Route::middleware(['auth', 'employee'])->group(function () {
     Route::get('/employee-dashboard/attendance', [EmployeeHomePageController::class, 'attendance'])->name('employee.attendance');
     Route::get('/employee-dashboard/outdoor', [EmployeeHomePageController::class, 'outdoor'])->name('employee.outdoor');
     Route::get('/employee-dashboard/requests', [EmployeeHomePageController::class, 'requests'])->name('employee.requests.index');
+    Route::put('/employee-dashboard/requests/{clientRequest}/status', [EmployeeHomePageController::class, 'updateRequestStatus'])->name('employee.requests.update-status');
     Route::get('/employee-dashboard/notifications', [EmployeeHomePageController::class, 'notifications'])->name('employee.notifications');
     Route::get('/employee-dashboard/setting', [EmployeeHomePageController::class, 'setting'])->name('employee.container.setting.index');
     Route::put('/employee-dashboard/setting/{id}', [EmployeeHomePageController::class, 'updateSetting'])->name('employee.container.setting.update');
@@ -123,7 +128,12 @@ Route::middleware(['auth', 'employee'])->group(function () {
 Route::middleware(['auth', 'client'])->group(function () {
     Route::get('/client-dashboard', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'index'])->name('client.dashboard');
     Route::get('/client-dashboard/requests', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'requests'])->name('client.requests.index');
+    Route::post('/client-dashboard/requests', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'storeRequest'])->name('client.requests.store');
     Route::get('/client-dashboard/care-plan', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'carePlan'])->name('client.care-plan');
+    Route::get('/client-dashboard/pca-agent', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'pcaAgent'])->name('client.pca-agent');
+    Route::post('/client-dashboard/pca-agent/{employee}/rate', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'rateAgent'])->name('client.pca-agent.rate');
+    Route::get('/client-dashboard/complaints', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'complaints'])->name('client.complaints.index');
+    Route::post('/client-dashboard/complaints', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'storeComplaint'])->name('client.complaints.store');
     Route::get('/client-dashboard/notifications', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'notifications'])->name('client.notifications');
     Route::get('/client-dashboard/setting', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'setting'])->name('client.container.setting.index');
     Route::put('/client-dashboard/setting/{id}', [\App\Http\Controllers\Client\Dashboard\ClientHomePageController::class, 'updateSetting'])->name('client.container.setting.update');

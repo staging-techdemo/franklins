@@ -1,5 +1,5 @@
 @extends('layouts.user')
-
+@section('title', 'Account Settings')
 @section('client-content')
     <div class="w-full flex items-center justify-between gap-5">
         <div>

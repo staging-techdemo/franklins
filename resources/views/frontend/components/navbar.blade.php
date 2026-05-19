@@ -18,17 +18,6 @@
             Us</a>
       </nav>
       <div class="flex items-center gap-6">
-         <a href="{{ route('packages') }}"
-            class="bg-[#F0BB4C] text-black subparagraph flex items-center gap-2 font-medium px-5 py-4 rounded-md hover:bg-[#7E80B0] hover:text-white transition-all duration-300">
-            Book Appointment
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-               class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right">
-               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-               <path d="M17 7l-10 10" />
-               <path d="M8 7l9 0l0 9" />
-            </svg>
-         </a>
          @auth
             <div class="relative group">
                <button class="flex items-center gap-2 outline-none cursor-pointer">
@@ -66,6 +55,31 @@
                      </form>
                   </div>
                </div>
+            </div>
+         @else
+            <div class="flex items-center gap-2">
+               <a href="{{ route('login') }}"
+                  class="bg-[#F0BB4C] text-black subparagraph flex items-center gap-2 font-medium px-5 py-3 rounded-md hover:bg-[#7E80B0] hover:text-white transition-all duration-300">
+                  LogIn
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right">
+                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                     <path d="M17 7l-10 10" />
+                     <path d="M8 7l9 0l0 9" />
+                  </svg>
+               </a>
+               <a href="{{ route('packages') }}"
+                  class="bg-[#7E80B0] text-white subparagraph flex items-center gap-2 font-medium px-5 py-3 rounded-md hover:bg-[#F0BB4C] hover:text-black transition-all duration-300">
+                  Get Started
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up-right">
+                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                     <path d="M17 7l-10 10" />
+                     <path d="M8 7l9 0l0 9" />
+                  </svg>
+               </a>
             </div>
          @endauth
       </div>

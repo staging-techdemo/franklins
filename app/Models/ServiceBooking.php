@@ -25,7 +25,16 @@ class ServiceBooking extends Model
         'amount',
         'payment_status',
         'stripe_session_id',
+        'stripe_customer_id',
+        'stripe_subscription_id',
+        'subscription_status',
+        'subscription_ends_at',
         'user_id',
+    ];
+
+    protected $casts = [
+        'subscription_ends_at' => 'datetime',
+        'preferred_date' => 'date',
     ];
 
     public function user()

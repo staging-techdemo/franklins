@@ -50,13 +50,6 @@
             <div class="flex items-center gap-3">
                 <input type="text" placeholder="Search clients..."
                     class="w-60 bg-theme-bg border border-theme-border rounded-[8px] px-4 py-2 text-[12.5px] text-theme-text-main placeholder:text-theme-text-muted outline-none focus:border-theme-primary">
-                <select
-                    class="w-40 bg-theme-card border border-theme-primary text-theme-primary rounded-[8px] px-3 py-2 text-[12px] font-medium outline-none cursor-pointer">
-                    <option>All Regions</option>
-                    <option>Austin</option>
-                    <option>Houston</option>
-                    <option>Dallas</option>
-                </select>
             </div>
         </div>
         <div class="overflow-x-auto">

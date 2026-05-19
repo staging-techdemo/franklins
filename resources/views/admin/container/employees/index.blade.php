@@ -11,11 +11,11 @@
 
         </div>
         <div class="flex gap-4 my-5 overflow-x-auto pb-2 custom-scrollbar">
-            <a href="{{ route('admin.employees.index', ['tab' => 'active']) }}" 
+            <a href="{{ route('admin.employees.index', ['tab' => 'active']) }}"
                 class="px-5 py-2.5 rounded-[10px] text-[13px] font-bold whitespace-nowrap transition-all {{ ($activeTab ?? 'active') === 'active' ? 'bg-theme-primary text-white shadow-md' : 'bg-theme-card border border-theme-border text-theme-text-muted hover:bg-theme-hover' }}">
                 Active Agents ({{ $stats['total'] }})
             </a>
-            <a href="{{ route('admin.employees.index', ['tab' => 'applications']) }}" 
+            <a href="{{ route('admin.employees.index', ['tab' => 'applications']) }}"
                 class="px-5 py-2.5 rounded-[10px] text-[13px] font-bold whitespace-nowrap transition-all {{ ($activeTab ?? 'active') === 'applications' ? 'bg-theme-primary text-white shadow-md' : 'text-theme-text-muted hover:bg-theme-hover border border-theme-border' }}">
                 Job Applications ({{ $stats['pending_apps'] ?? 0 }})
             </a>
@@ -58,18 +58,29 @@
                 <h3 class="text-[15px] font-extrabold text-theme-text-main">
                     {{ $activeTab === 'applications' ? 'Pending Job Applications' : 'All Personal Care Agents' }}
                 </h3>
+                <div class="flex items-center gap-3">
+                    <input type="text" placeholder="Search clients..."
+                        class="w-60 bg-theme-bg border border-theme-border rounded-[8px] px-4 py-2 text-[12.5px] text-theme-text-main placeholder:text-theme-text-muted outline-none focus:border-theme-primary">
+                </div>
             </div>
             <div class="overflow-x-auto">
                 @if($activeTab === 'applications')
                     <table class="w-full text-left">
                         <thead class="bg-theme-bg border-b border-theme-border">
                             <tr>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Applicant</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Contact</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Experience</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Applied Date</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Status</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-right">Actions</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">
+                                    Applicant</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">
+                                    Contact</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">
+                                    Experience</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">
+                                    Applied Date</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Status
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-right">
+                                    Actions</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-theme-border">
@@ -84,15 +95,18 @@
                                         <div class="text-[11px] text-theme-text-muted">{{ $app->email }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-[13px] text-theme-text-main">{{ $app->experience_years }} Years</td>
-                                    <td class="px-6 py-4 text-[13px] text-theme-text-muted">{{ $app->created_at->format('M d, Y') }}</td>
+                                    <td class="px-6 py-4 text-[13px] text-theme-text-muted">{{ $app->created_at->format('M d, Y') }}
+                                    </td>
                                     <td class="px-6 py-4">
-                                        <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-600 text-[10.5px] font-bold">{{ ucfirst($app->status) }}</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-600 text-[10.5px] font-bold">{{ ucfirst($app->status) }}</span>
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         @if($app->status === 'pending')
                                             <form action="{{ route('admin.employees.approve', $app->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="px-3 py-1.5 bg-green-500 text-white rounded-lg text-[11px] font-bold hover:bg-green-600 transition-all">Approve</button>
+                                                <button type="submit"
+                                                    class="px-3 py-1.5 bg-green-500 text-white rounded-lg text-[11px] font-bold hover:bg-green-600 transition-all">Approve</button>
                                             </form>
                                         @else
                                             <span class="text-green-600 font-bold text-[11px]">Approved</span>
@@ -100,7 +114,9 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="6" class="px-6 py-10 text-center text-theme-text-muted">No applications found.</td></tr>
+                                <tr>
+                                    <td colspan="6" class="px-6 py-10 text-center text-theme-text-muted">No applications found.</td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -109,14 +125,26 @@
                         <thead class="bg-theme-bg border-b border-theme-border">
                             <tr>
                                 <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">#</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Agent Name</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Contact</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Area</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Type</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-center">Clients</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-center">Rating</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-center">Status</th>
-                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-right">Actions</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Agent
+                                    Name</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">
+                                    Contact</th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Area
+                                </th>
+                                <th class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest">Type
+                                </th>
+                                <th
+                                    class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-center">
+                                    Clients</th>
+                                <th
+                                    class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-center">
+                                    Rating</th>
+                                <th
+                                    class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-center">
+                                    Status</th>
+                                <th
+                                    class="px-6 py-3 text-[10.5px] font-bold text-theme-text-muted uppercase tracking-widest text-right">
+                                    Actions</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-theme-border">
@@ -125,12 +153,15 @@
                                     <td class="px-6 py-4 text-[13px] text-theme-text-muted">{{ $employee->agent_custom_id }}</td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center gap-3">
-                                            <div class="w-9 h-9 rounded-full bg-theme-primary-light text-theme-primary flex items-center justify-center font-extrabold text-[12px]">
+                                            <div
+                                                class="w-9 h-9 rounded-full bg-theme-primary-light text-theme-primary flex items-center justify-center font-extrabold text-[12px]">
                                                 {{ strtoupper(substr($employee->user->name, 0, 2)) }}
                                             </div>
                                             <div>
-                                                <div class="text-[13.5px] font-bold text-theme-text-main">{{ $employee->user->name }}</div>
-                                                <div class="text-[11px] text-theme-text-muted">SSN: ***-**-{{ substr($employee->ssn, -4) }}</div>
+                                                <div class="text-[13.5px] font-bold text-theme-text-main">{{ $employee->user->name }}
+                                                </div>
+                                                <div class="text-[11px] text-theme-text-muted">SSN:
+                                                    ***-**-{{ substr($employee->ssn, -4) }}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -139,25 +170,52 @@
                                         <div class="text-[11px] text-theme-text-muted">{{ $employee->user->email }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-[13px] text-theme-text-main">{{ $employee->region ?? 'N/A' }}</td>
-                                    <td class="px-6 py-4"><span class="px-2 py-0.5 rounded bg-blue-50 text-theme-primary text-[11px] font-bold">{{ $employee->type }}</span></td>
-                                    <td class="px-6 py-4 text-[13.5px] font-bold text-theme-text-main text-center">{{ $employee->clients->count() }}</td>
-                                    <td class="px-6 py-4 text-[13px] text-amber-500 font-bold text-center">⭐ {{ number_format($employee->rating, 1) }}</td>
+                                    <td class="px-6 py-4"><span
+                                            class="px-2 py-0.5 rounded bg-blue-50 text-theme-primary text-[11px] font-bold">{{ $employee->type }}</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-[13.5px] font-bold text-theme-text-main text-center">
+                                        {{ $employee->clients->count() }}</td>
+                                    <td class="px-6 py-4 text-[13px] text-amber-500 font-bold text-center">⭐
+                                        {{ number_format($employee->rating, 1) }}</td>
                                     <td class="px-6 py-4 text-center">
-                                        <span class="px-2 py-0.5 rounded-full {{ $employee->status === 'Active' ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600' }} text-[10.5px] font-bold">{{ $employee->status }}</span>
+                                        <span
+                                            class="px-2 py-0.5 rounded-full {{ $employee->status === 'Active' ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600' }} text-[10.5px] font-bold">{{ $employee->status }}</span>
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <div class="flex items-center justify-end gap-2">
-                                            <a href="{{ route('admin.employees.show', $employee->id) }}" class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg></a>
-                                            <a href="{{ route('admin.employees.edit', $employee->id) }}" class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center hover:bg-amber-600 hover:text-white transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg></a>
-                                            <form action="{{ route('admin.employees.destroy', $employee->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
+                                            <a href="{{ route('admin.employees.show', $employee->id) }}"
+                                                class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"><svg
+                                                    class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                    stroke-width="2">
+                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                </svg></a>
+                                            <a href="{{ route('admin.employees.edit', $employee->id) }}"
+                                                class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center hover:bg-amber-600 hover:text-white transition-all"><svg
+                                                    class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                    stroke-width="2">
+                                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                </svg></a>
+                                            <form action="{{ route('admin.employees.destroy', $employee->id) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure?');" class="inline">
                                                 @csrf @method('DELETE')
-                                                <button type="submit" class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /></svg></button>
+                                                <button type="submit"
+                                                    class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"><svg
+                                                        class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                        stroke-width="2">
+                                                        <polyline points="3 6 5 6 21 6" />
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+                                                    </svg></button>
                                             </form>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
-                                <tr><td colspan="9" class="px-6 py-10 text-center text-theme-text-muted">No agents found.</td></tr>
+                                <tr>
+                                    <td colspan="9" class="px-6 py-10 text-center text-theme-text-muted">No agents found.</td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>

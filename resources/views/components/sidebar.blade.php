@@ -5,7 +5,7 @@
          <img class="w-80 h-auto object-cover" src="{{ asset('assets/logo.png') }}" alt="Logo">
       </div>
    </div>
-   <div id="sidebar-scroll" class="flex-1 overflow-y-scroll px-4 py-6 custom-scrollbar scrollbar-visible">
+   <div id="sidebar-scroll" class="flex-1 overflow-y-scroll px-4 py-6">
       @if(Auth::user()->role === 'admin')
          <div class="mb-8">
             <div class="px-3 mb-3 text-[10px] font-extrabold text-slate-400 uppercase tracking-[0.15em]">Main</div>
@@ -366,6 +366,20 @@
                      <span class="text-[13.5px] font-bold">My Care Plan</span>
                   </div>
                </a>
+               <a href="{{ route('client.pca-agent') }}"
+                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('client.pca-agent') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                  <div class="flex items-center gap-3">
+                     <svg
+                        class="w-[18px] h-[18px] {{ Request::routeIs('client.pca-agent') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                     </svg>
+                     <span class="text-[13.5px] font-bold">My PCA Agent</span>
+                  </div>
+               </a>
                <a href="{{ route('client.requests.index') }}"
                   class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('client.requests.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
                   <div class="flex items-center gap-3">
@@ -375,6 +389,19 @@
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                      </svg>
                      <span class="text-[13.5px] font-bold">My Requests</span>
+                  </div>
+               </a>
+               <a href="{{ route('client.complaints.index') }}"
+                  class="flex items-center justify-between px-3 py-2.5 rounded-[10px] {{ Request::routeIs('client.complaints.*') ? 'bg-theme-primary text-white shadow-md' : 'text-theme-muted hover:bg-theme-hover' }} transition-all group">
+                  <div class="flex items-center gap-3">
+                     <svg
+                        class="w-[18px] h-[18px] {{ Request::routeIs('client.complaints.*') ? 'text-white' : 'text-slate-400 group-hover:text-slate-600' }}"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                     </svg>
+                     <span class="text-[13.5px] font-bold">Complaints</span>
                   </div>
                </a>
             </div>

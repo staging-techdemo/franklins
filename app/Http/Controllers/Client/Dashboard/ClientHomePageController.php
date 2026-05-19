@@ -20,10 +20,10 @@ class ClientHomePageController extends Controller
     {
         $user = Auth::user();
         $clientRecord = Client::with('agent')->where('user_id', $user->id)->first();
-        
+
         $requests = ClientRequest::where('client_id', $clientRecord->id ?? 0)->latest()->take(5)->get();
         $bookings = ServiceBooking::where('user_id', $user->id)->latest()->take(5)->get();
-        
+
         $stats = [
             'total_requests' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->count(),
             'total_bookings' => ServiceBooking::where('user_id', $user->id)->count(),
@@ -40,25 +40,27 @@ class ClientHomePageController extends Controller
         ]);
     }
 
-    public function requests(Request $request)
+    public function requests()
     {
         $user = Auth::user();
+
         $clientRecord = Client::where('user_id', $user->id)->first();
-        
-        $activeTab = $request->query('tab', 'bookings');
-        
-        if ($activeTab === 'bookings') {
-            $data = ServiceBooking::with('service')->where('user_id', $user->id)->latest()->paginate(10);
-        } else {
-            $data = ClientRequest::where('client_id', $clientRecord->id ?? 0)->latest()->paginate(10);
-        }
+
+        $data = ClientRequest::where('client_id', $clientRecord->id ?? 0)
+            ->latest()
+            ->paginate(10);
 
         $stats = [
-            'total_bookings' => ServiceBooking::where('user_id', $user->id)->count(),
-            'total_requests' => ClientRequest::where('client_id', $clientRecord->id ?? 0)->count(),
+            'total_requests' => ClientRequest::where(
+                'client_id',
+                $clientRecord->id ?? 0
+            )->count(),
         ];
 
-        return view('client.dashboard.container.requests.index', compact('data', 'stats', 'activeTab'));
+        return view(
+            'client.dashboard.container.requests.index',
+            compact('data', 'stats')
+        );
     }
 
     public function carePlan()
@@ -109,7 +111,7 @@ class ClientHomePageController extends Controller
             if ($user->id !== Auth::id()) {
                 abort(403);
             }
-            
+
             $validatedData = $request->validate([
                 'name' => 'nullable|string|max:255',
                 'email' => 'nullable|email|unique:users,email,' . $user->id,
@@ -157,5 +159,98 @@ class ClientHomePageController extends Controller
     {
         DB::table('sessions')->where('id', $id)->where('user_id', Auth::id())->delete();
         return back()->with('success', 'Session terminated successfully.');
+    }
+
+    public function pcaAgent()
+    {
+        $user = Auth::user();
+        $clientRecord = Client::with('agent.employee')->where('user_id', $user->id)->first();
+
+        return view('client.dashboard.container.pca-agent.index', compact('clientRecord'));
+    }
+
+    public function rateAgent(Request $request, \App\Models\Employee $employee)
+    {
+        $user = Auth::user();
+        $clientRecord = Client::where('user_id', $user->id)->first();
+
+        if (!$clientRecord || $clientRecord->agent_id !== $employee->user_id) {
+            abort(403, 'Unauthorized access.');
+        }
+
+        $validatedData = $request->validate([
+            'rating' => 'required|numeric|min:1|max:5',
+        ]);
+
+        $employee->update([
+            'rating' => $validatedData['rating'],
+        ]);
+
+        return redirect()->back()->with('success', 'Thank you! Your rating for your Personal Care Agent has been submitted.');
+    }
+
+    public function storeRequest(Request $request)
+    {
+        $user = Auth::user();
+        $clientRecord = Client::where('user_id', $user->id)->first();
+        if (!$clientRecord) {
+            return redirect()->back()->with('error', 'Client record not found.');
+        }
+
+        $validatedData = $request->validate([
+            'type' => 'required|string|in:Change Agent,Outdoor Access,Cancellations,General Support',
+            'priority' => 'required|string|in:Low,Medium,High',
+            'description' => 'required|string|min:10',
+        ]);
+
+        $customId = 'REQ-' . strtoupper(Str::random(8));
+
+        ClientRequest::create([
+            'client_id' => $clientRecord->id,
+            'request_custom_id' => $customId,
+            'type' => $validatedData['type'],
+            'priority' => $validatedData['priority'],
+            'description' => $validatedData['description'],
+            'status' => 'Pending',
+        ]);
+
+        return redirect()->route('client.requests.index', ['tab' => 'requests'])->with('success', 'Support request submitted successfully!');
+    }
+
+    public function complaints()
+    {
+        $user = Auth::user();
+        $clientRecord = Client::where('user_id', $user->id)->first();
+        
+        $complaints = \App\Models\Complaint::where('client_id', $clientRecord->id ?? 0)
+            ->latest()
+            ->paginate(10);
+
+        return view('client.dashboard.container.complaints.index', compact('complaints'));
+    }
+
+    public function storeComplaint(Request $request)
+    {
+        $user = Auth::user();
+        $clientRecord = Client::where('user_id', $user->id)->first();
+        if (!$clientRecord) {
+            return redirect()->back()->with('error', 'Client record not found.');
+        }
+
+        $validatedData = $request->validate([
+            'subject' => 'required|string|max:255',
+            'priority' => 'required|string|in:Low,Medium,High',
+            'description' => 'required|string|min:10',
+        ]);
+
+        \App\Models\Complaint::create([
+            'client_id' => $clientRecord->id,
+            'subject' => $validatedData['subject'],
+            'priority' => $validatedData['priority'],
+            'description' => $validatedData['description'],
+            'status' => 'Pending',
+        ]);
+
+        return redirect()->route('client.complaints.index')->with('success', 'Complaint registered successfully! Our care team will review this shortly.');
     }
 }

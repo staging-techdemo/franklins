@@ -1,5 +1,5 @@
 @extends('layouts.user')
-
+@section('title', 'Dashboard')
 @section('client-content')
     <div class="mb-8 flex items-center justify-between">
         <div>
@@ -9,11 +9,9 @@
         </div>
         <div class="flex gap-3">
             <a href="{{ route('client.requests.index') }}"
-                class="px-5 py-2.5 bg-theme-primary text-white rounded-[10px] text-[13px] font-bold shadow-md hover:bg-theme-primary-hover transition-all">+
-                New Request</a>
+                class="px-5 py-2.5 bg-theme-primary text-white rounded-[10px] text-[13px] font-bold shadow-md hover:bg-theme-primary-hover transition-all">+ New Request</a>
         </div>
     </div>
-
     <div
         class="bg-theme-card border border-theme-border rounded-[14px] p-8 flex items-center justify-between mb-8 shadow-sm">
         <div class="flex items-center gap-6">
@@ -55,8 +53,8 @@
 
         <div class="bg-theme-card rounded-[14px] p-6 border border-theme-border shadow-sm">
             <div class="text-theme-muted text-[12px] font-bold uppercase tracking-widest mb-1">Total Requests</div>
-            <div class="text-3xl font-extrabold text-theme-main">{{ $stats['total_requests'] + $stats['total_bookings'] }}</div>
-            <div class="mt-4 text-theme-muted text-[11.5px] font-medium">Combined services & queries</div>
+            <div class="text-3xl font-extrabold text-theme-main">{{ $stats['total_requests']}}</div>
+            <div class="mt-4 text-theme-muted text-[11.5px] font-medium">Services & queries</div>
         </div>
     </div>
 

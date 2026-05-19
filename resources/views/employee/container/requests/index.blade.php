@@ -1,5 +1,5 @@
 @extends('layouts.employee')
-
+@section('title', 'Client Requests')
 @section('employee-content')
     <div class="w-full flex items-center justify-between gap-5">
         <div>
@@ -53,7 +53,17 @@
                                 <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px] font-bold">{{ $requestData->priority }}</span>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-600 text-[10.5px] font-bold">{{ $requestData->status }}</span>
+                                @php
+                                    $statusBadgeClasses = [
+                                        'Approved' => 'bg-green-100 text-green-700',
+                                        'Rejected' => 'bg-red-100 text-red-700',
+                                        'Pending' => 'bg-amber-100 text-amber-700',
+                                    ];
+                                    $badgeClass = $statusBadgeClasses[$requestData->status] ?? 'bg-slate-100 text-slate-700';
+                                @endphp
+                                <span class="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold {{ $badgeClass }}">
+                                    {{ $requestData->status }}
+                                </span>
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <button @click="showModal = true" class="px-3 py-1.5 bg-theme-primary-light text-theme-primary rounded-lg text-[11px] font-bold transition-all">View Details</button>
@@ -91,8 +101,35 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="px-6 py-4 border-t border-theme-border bg-theme-hover flex justify-end">
-                                            <button @click="showModal = false" class="px-5 py-2.5 bg-theme-primary text-white rounded-[10px] text-[13px] font-bold">Close</button>
+                                        <div class="px-6 py-4 border-t border-theme-border bg-theme-hover flex flex-wrap items-center justify-between gap-4">
+                                            <div>
+                                                @if($requestData->status !== 'Pending')
+                                                    <span class="text-[12.5px] font-bold text-theme-text-muted">Processed: <span class="text-theme-primary">{{ $requestData->status }}</span></span>
+                                                @elseif(!in_array($requestData->type, ['General Support', 'Outdoor Access']))
+                                                    <span class="text-[11.5px] text-amber-600 font-bold flex items-center gap-1">
+                                                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                                                        Admin clearance required
+                                                    </span>
+                                                @else
+                                                    <span class="text-[11.5px] text-green-600 font-bold">Open for your action</span>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="flex items-center gap-2">
+                                                @if($requestData->status === 'Pending' && in_array($requestData->type, ['General Support', 'Outdoor Access']))
+                                                    <form action="{{ route('employee.requests.update-status', $requestData) }}" method="POST" class="inline">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" name="status" value="Rejected" class="px-4 py-2 bg-red-50 text-red-600 border border-red-100 rounded-[10px] text-[12.5px] font-bold hover:bg-red-100 transition-colors">
+                                                            Decline
+                                                        </button>
+                                                        <button type="submit" name="status" value="Approved" class="px-4 py-2 bg-green-600 text-white rounded-[10px] text-[12.5px] font-bold hover:bg-green-700 transition-colors ml-1.5">
+                                                            Approve
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                                <button @click="showModal = false" class="px-4 py-2 bg-theme-border text-theme-text-muted rounded-[10px] text-[12.5px] font-bold hover:bg-theme-hover transition-colors">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
